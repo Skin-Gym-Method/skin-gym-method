@@ -1,0 +1,528 @@
+<!--
+  ============================================================
+  THE SKIN GYM METHOD — SALES PAGE
+  Glow Aesthetic Clinic · Bismarck, ND
+  ============================================================
+  SETUP INSTRUCTIONS FOR AUSTIN:
+  1. Search for https://buy.stripe.com/fZu4gA7Nb0rQfuFaK167S01 and replace with your $997 Stripe payment link
+  2. Search for https://buy.stripe.com/00w3cw2sR2zYcitdWd67S02 and replace with your $1,497 Stripe payment link
+  3. Save the file and open in Chrome to preview
+  4. Upload to carrd.co or your hosting of choice
+  ============================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Skin Gym Method</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F7F3EE; --warm-white: #FDFAF7; --charcoal: #1C1A18;
+    --stone: #6B6560; --gold: #B8935A; --gold-light: #D4AF7A;
+    --blush: #E8D5C4; --border: rgba(28,26,24,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--charcoal); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 24px; position: relative; background: var(--charcoal); overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,147,90,0.15) 0%, transparent 70%); pointer-events: none; }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 9vw, 96px); font-weight: 300; line-height: 1.0; color: var(--cream); margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3vw, 26px); font-weight: 300; font-style: italic; color: rgba(247,243,238,0.6); margin-bottom: 56px; max-width: 600px; }
+  .hero-cta-group { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--charcoal); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; padding: 18px 48px; transition: background 0.2s, transform 0.15s; cursor: pointer; border: none; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost { display: inline-block; border: 1px solid rgba(247,243,238,0.25); color: rgba(247,243,238,0.7); font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 16px 40px; transition: border-color 0.2s, color 0.2s; cursor: pointer; background: none; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(247,243,238,0.3); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(247,243,238,0.3), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+  /* SECTIONS */
+  section { padding: 100px 24px; }
+  .container { max-width: 860px; margin: 0 auto; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 300; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 24px; }
+  h2 em { font-style: italic; color: var(--gold); }
+  .lead { font-size: 18px; color: var(--stone); line-height: 1.8; max-width: 680px; }
+
+  /* PROBLEM */
+  .problem { background: var(--cream); }
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 56px; }
+  .problem-item { padding: 40px 36px; background: var(--warm-white); border: 1px solid var(--border); }
+  .problem-item .icon { width: 32px; height: 2px; background: var(--gold); margin-bottom: 20px; }
+  .problem-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+  .problem-item p { font-size: 15px; color: var(--stone); line-height: 1.7; }
+
+  /* PHILOSOPHY PULL QUOTE */
+  .philosophy { background: var(--charcoal); color: var(--cream); text-align: center; }
+  .philosophy h2 { color: var(--cream); }
+  .philosophy .lead { color: rgba(247,243,238,0.65); margin: 0 auto 56px; }
+  .big-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 300; font-style: italic; color: var(--gold-light); max-width: 760px; margin: 0 auto 20px; line-height: 1.25; position: relative; padding: 0 40px; }
+  .big-quote::before { content: '"'; position: absolute; left: 0; top: -10px; font-size: 80px; color: var(--gold); opacity: 0.3; line-height: 1; }
+  .quote-attr { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,243,238,0.3); margin-top: 8px; }
+
+  /* TEAM SYSTEM */
+  .team { background: var(--cream); }
+  .team-diagram { margin-top: 56px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; }
+  .team-card { background: var(--warm-white); border: 1px solid var(--border); padding: 32px 28px; }
+  .team-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 16px; }
+  .team-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .team-card ul li { font-size: 14px; color: var(--stone); padding-left: 16px; position: relative; }
+  .team-card ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+  .team-arrow { text-align: center; }
+  .team-arrow-line { width: 2px; height: 60px; background: var(--gold); margin: 0 auto 8px; opacity: 0.4; }
+  .team-arrow-text { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .team-outcome { margin-top: 32px; border: 1px solid var(--gold); padding: 28px 32px; text-align: center; }
+  .team-outcome p { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; font-style: italic; color: var(--charcoal); }
+
+  /* MODULES */
+  .modules { background: var(--warm-white); }
+  .modules-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 56px; }
+  .module-card { border: 1px solid var(--border); padding: 32px 28px; background: var(--warm-white); transition: border-color 0.2s; position: relative; }
+  .module-card:hover { border-color: var(--gold); }
+  .module-card.featured { background: var(--cream); border-color: var(--gold); }
+  .module-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--blush); line-height: 1; margin-bottom: 12px; }
+  .module-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 400; margin-bottom: 10px; }
+  .module-card p { font-size: 13px; color: var(--stone); line-height: 1.7; }
+  .module-tag { position: absolute; top: 16px; right: 16px; background: var(--gold); color: var(--charcoal); font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; }
+
+  /* INCLUDES */
+  .includes { background: var(--cream); }
+  .includes-list { list-style: none; margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .includes-list li { display: flex; align-items: flex-start; gap: 16px; padding: 24px; background: var(--warm-white); border: 1px solid var(--border); font-size: 14px; line-height: 1.6; }
+  .includes-dot { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--gold); margin-top: 2px; }
+
+  /* CREDIBILITY */
+  .cred { background: var(--warm-white); text-align: center; }
+  .awards-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 56px; }
+  .award-pill { border: 1px solid var(--border); padding: 20px 32px; font-size: 14px; color: var(--stone); text-align: center; min-width: 180px; }
+  .award-pill span { display: block; font-size: 10px; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; }
+
+  /* PRICING */
+  .pricing { background: var(--charcoal); color: var(--cream); text-align: center; }
+  .pricing h2 { color: var(--cream); }
+  .pricing .lead { color: rgba(247,243,238,0.55); margin: 0 auto 64px; }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; max-width: 720px; margin: 0 auto 48px; }
+  .pricing-card { background: rgba(247,243,238,0.04); border: 1px solid rgba(247,243,238,0.1); padding: 48px 40px; text-align: left; position: relative; }
+  .pricing-card.featured { border-color: var(--gold); background: rgba(184,147,90,0.08); }
+  .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--charcoal); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 16px; white-space: nowrap; }
+  .pricing-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--cream); margin-bottom: 8px; }
+  .price { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--gold-light); line-height: 1; margin: 20px 0 28px; }
+  .price sup { font-size: 24px; vertical-align: super; }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .pricing-features li { font-size: 14px; color: rgba(247,243,238,0.65); padding-left: 20px; position: relative; }
+  .pricing-features li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+  /* FAQ */
+  .faq { background: var(--cream); }
+  .faq-list { margin-top: 56px; }
+  .faq-item { border-top: 1px solid var(--border); padding: 28px 0; }
+  .faq-item:last-child { border-bottom: 1px solid var(--border); }
+  .faq-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; margin-bottom: 12px; }
+  .faq-item p { font-size: 15px; color: var(--stone); line-height: 1.8; max-width: 680px; }
+
+  /* FINAL CTA */
+  .final-cta { background: var(--warm-white); text-align: center; padding: 120px 24px; }
+  .final-cta h2 { margin-bottom: 20px; }
+  .final-cta .lead { margin: 0 auto 48px; text-align: center; }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); color: rgba(247,243,238,0.35); text-align: center; padding: 40px 24px; font-size: 13px; letter-spacing: 0.05em; }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    .modules-grid { grid-template-columns: 1fr 1fr; }
+    .team-diagram { grid-template-columns: 1fr; }
+    .team-arrow { display: none; }
+  }
+  @media (max-width: 560px) {
+    .problem-grid, .modules-grid, .includes-list, .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Glow Aesthetic Clinic · Bismarck, ND · 8 Years · Award-Winning</p>
+  <h1>The Skin<br><em>Gym</em> Method</h1>
+  <p class="hero-sub">We don't sell treatments. We guide outcomes.</p>
+  <div class="hero-cta-group">
+    <a href="#pricing" class="btn-primary">Get the System</a>
+    <a href="#modules" class="btn-ghost">See What's Inside</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>scroll</div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem fade-in">
+  <div class="container">
+    <p class="section-label">The problem</p>
+    <h2>Most medspas are stuck<br>selling <em>appointments,</em><br>not outcomes.</h2>
+    <p class="lead">Single treatments. Packages. Repeat bookings when clients feel like it. It keeps the lights on — but it never builds the kind of loyal, high-value clientele that actually sustains a business.</p>
+    <div class="problem-grid">
+      <div class="problem-item"><div class="icon"></div><h3>Clients don't come back</h3><p>Without a plan, there's no reason to return. They got a treatment, it faded, they moved on.</p></div>
+      <div class="problem-item"><div class="icon"></div><h3>Average ticket stays low</h3><p>Menu-picking keeps clients in the $150–$300 range. A skin plan moves that to $2,000–$5,000+ per year.</p></div>
+      <div class="problem-item"><div class="icon"></div><h3>Providers work in silos</h3><p>Aestheticians and nurse providers operate separately, leaving enormous cross-referral revenue on the table.</p></div>
+      <div class="problem-item"><div class="icon"></div><h3>You're always chasing new clients</h3><p>Acquisition is expensive. Retention is profitable. Most medspas have the ratio backwards.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy fade-in">
+  <div class="container">
+    <p class="section-label">The shift</p>
+    <h2 style="color:var(--cream);">We don't sell treatments.<br>We <em>guide outcomes.</em></h2>
+    <p class="lead" style="margin: 0 auto 56px;">Real skin results work like the gym. One session doesn't change anything. A plan, layered over time, with consistency — that changes everything. And just like the gym, when you stop, the results start to fade. Because we never stop aging.</p>
+    <div class="big-quote">If your goal is real change — not just temporary improvement — this is the most effective way to get there.</div>
+    <p class="quote-attr">— The opening line that changes every consultation</p>
+  </div>
+</section>
+
+<!-- TEAM SYSTEM -->
+<section class="team fade-in">
+  <div class="container">
+    <p class="section-label">The team system</p>
+    <h2>Every provider grows<br>every other provider's <em>books.</em></h2>
+    <p class="lead">The Skin Gym Method breaks down the silos that keep medspa revenue locked in lanes. When every plan draws from your full service menu, your entire team wins together.</p>
+
+    <div class="team-diagram">
+      <div class="team-card">
+        <h3>Nurse Provider</h3>
+        <p style="font-size:13px;color:var(--stone);margin-bottom:16px;">Leads the plan with:</p>
+        <ul>
+          <li>Injectables / neurotoxin</li>
+          <li>Morpheus8 / RF microneedling</li>
+          <li>EzGel / biostimulators</li>
+          <li>Energy-based treatments</li>
+        </ul>
+        <p style="font-size:13px;color:var(--stone);margin-top:16px;">Also includes in the plan →</p>
+        <ul style="margin-top:8px;">
+          <li>Facials (aesthetician)</li>
+          <li>Microneedling (aesthetician)</li>
+          <li>LHR (aesthetician)</li>
+        </ul>
+      </div>
+
+      <div class="team-arrow">
+        <div class="team-arrow-line"></div>
+        <div class="team-arrow-text">One plan.<br>One goal.</div>
+        <div class="team-arrow-line"></div>
+      </div>
+
+      <div class="team-card">
+        <h3>Aesthetician</h3>
+        <p style="font-size:13px;color:var(--stone);margin-bottom:16px;">Leads the plan with:</p>
+        <ul>
+          <li>Clinical facials</li>
+          <li>Chemical peels</li>
+          <li>Microneedling</li>
+          <li>Laser hair removal</li>
+          <li>Skincare / home care</li>
+        </ul>
+        <p style="font-size:13px;color:var(--stone);margin-top:16px;">Also includes in the plan →</p>
+        <ul style="margin-top:8px;">
+          <li>Injectables (nurse)</li>
+          <li>Morpheus8 (nurse)</li>
+          <li>EzGel (nurse)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="team-outcome">
+      <p>"They don't refer clients to each other. They build plans that require each other. That's the difference."</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="modules fade-in" id="modules">
+  <div class="container" style="max-width:1060px;">
+    <p class="section-label">What's inside</p>
+    <h2>Nine modules.<br>One complete <em>system.</em></h2>
+    <p class="lead">Every tool, script, and framework we use at Glow — built into a self-paced course you can implement immediately.</p>
+
+    <div class="modules-grid">
+      <div class="module-card featured">
+        <div class="module-tag">Foundation</div>
+        <div class="module-num">01</div>
+        <h3>The Philosophy Shift</h3>
+        <p>We don't sell treatments — we guide outcomes. The gym analogy, the dentist approach, and why structure is the greatest gift you can give your clients.</p>
+      </div>
+      <div class="module-card featured">
+        <div class="module-tag">New</div>
+        <div class="module-num">02</div>
+        <h3>The Team System</h3>
+        <p>How to build plans that create a referral loop between every provider in your clinic — aestheticians feeding nurse providers and vice versa, all toward one goal.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-num">03</div>
+        <h3>Building Your Skin Plans</h3>
+        <p>A treatment-layering framework for aging, pigmentation, texture, and acne — with cross-provider opportunities mapped for each concern category.</p>
+      </div>
+      <div class="module-card featured">
+        <div class="module-tag">Core</div>
+        <div class="module-num">04</div>
+        <h3>The Consultation Script</h3>
+        <p>Word-for-word: how to open, present, handle every objection, and the monthly cost reframe that makes the price feel smaller than random treatments.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-num">05</div>
+        <h3>Pricing Your Plans</h3>
+        <p>Provider-driven discount flexibility, three payment structures, and how to frame the monthly investment so clients compare it to what they're already spending.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-num">06</div>
+        <h3>Home Care Integration</h3>
+        <p>Build a home care protocol into every plan — the missing 80% that determines whether your in-clinic results last, plus the retail revenue it generates.</p>
+      </div>
+      <div class="module-card featured">
+        <div class="module-tag">New</div>
+        <div class="module-num">07</div>
+        <h3>The Follow-Up System</h3>
+        <p>How to use RepeatMD to send plans with expiration dates, and the exact follow-up message that reframes the check-in as service — not a sales call.</p>
+      </div>
+      <div class="module-card featured">
+        <div class="module-tag">New</div>
+        <div class="module-num">08</div>
+        <h3>Maintenance & The Long Game</h3>
+        <p>We never stop aging. How to transition clients from their plan into maintenance, and why the plan never truly ends — it just evolves.</p>
+      </div>
+      <div class="module-card">
+        <div class="module-num">09</div>
+        <h3>Retention & Keeping Clients On Plan</h3>
+        <p>The check-in cadence, the pause conversation, and the single most powerful retention tool in the entire system — before and after photos paired with the results conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDES -->
+<section class="includes fade-in">
+  <div class="container">
+    <p class="section-label">Also included</p>
+    <h2>Done-for-you <em>templates</em><br>you can use this week.</h2>
+    <ul class="includes-list">
+      <li><div class="includes-dot"></div>Skin Plan Client Document — a professional template you fill out per client and present in-session or send digitally via RepeatMD</li>
+      <li><div class="includes-dot"></div>Full Consultation Script PDF — formatted for easy reference and staff training, ready to print or share</li>
+      <li><div class="includes-dot"></div>Plan Pricing Worksheet — build your plan pricing from your existing service menu, including cross-provider treatment layering</li>
+      <li><div class="includes-dot"></div>Home Care Pairing Guide — match the right home care protocols to each of the four core skin concern categories</li>
+      <li><div class="includes-dot"></div>Team Collaboration Map — a visual guide for building plans that cross aesthetician and nurse provider service menus intentionally</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CREDIBILITY -->
+<section class="cred fade-in">
+  <div class="container">
+    <p class="section-label">Who this comes from</p>
+    <h2>8 years. Real results.<br><em>Real receipts.</em></h2>
+    <p class="lead" style="margin:0 auto;">We didn't build a theory. We built a clinic — and this is the exact system running inside it every single day.</p>
+
+    <div class="awards-row">
+      <div class="award-pill"><span>Award</span>Best Skin Clinic<br>Bismarck / Mandan</div>
+      <div class="award-pill"><span>Recognition</span>Top Morpheus8 Provider<br>3 Years Running</div>
+      <div class="award-pill"><span>Achievement</span>Vivant Elite<br>3 Consecutive Years</div>
+      <div class="award-pill"><span>Experience</span>8 Years<br>Owner-Operated</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:48px;max-width:860px;margin-left:auto;margin-right:auto;">
+      <div style="background:var(--cream);border:1px solid var(--border);padding:32px 24px;text-align:center;">
+        <div style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);margin-bottom:12px;">Before Skin Plans</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--stone);line-height:1;">$75–$1,148</div>
+        <div style="font-size:13px;color:var(--stone);margin-top:8px;">individual visit tickets</div>
+      </div>
+      <div style="background:var(--charcoal);border:1px solid var(--gold);padding:32px 24px;text-align:center;">
+        <div style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">With Skin Plans</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--gold-light);line-height:1;">$5,600–$8,055</div>
+        <div style="font-size:13px;color:rgba(247,243,238,0.6);margin-top:8px;">per plan — our actual invoices</div>
+      </div>
+      <div style="background:var(--gold);border:1px solid var(--gold);padding:32px 24px;text-align:center;">
+        <div style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(28,26,24,0.6);margin-bottom:12px;">Additional Monthly Revenue</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--charcoal);line-height:1;">$35K+</div>
+        <div style="font-size:13px;color:var(--charcoal);margin-top:8px;">generated every month</div>
+      </div>
+    </div>
+
+    <!-- REAL CASE STUDIES -->
+    <div style="margin-top:80px;max-width:960px;margin-left:auto;margin-right:auto;">
+      <p style="font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;text-align:center;">Real client invoices from our RepeatMD system</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,38px);font-weight:300;text-align:center;margin-bottom:8px;line-height:1.2;">These are not projections.<br><em>These are receipts.</em></h3>
+      <p style="text-align:center;color:var(--stone);font-size:14px;margin-bottom:56px;">All client names removed. Plan values and dates are real.</p>
+
+      <!-- Case Study 1 -->
+      <div style="border:1px solid var(--border);margin-bottom:2px;display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <div style="background:var(--cream);padding:40px 36px;border-right:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone);margin-bottom:20px;">Before — Individual visits</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:8px;">
+              <span style="font-size:13px;color:var(--charcoal);">Dysport 36 units + Lip Filler</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--stone);">$1,148</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:8px;">
+              <span style="font-size:13px;color:var(--charcoal);">Individual appointments as needed</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--stone);">ongoing</span>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--stone);font-style:italic;">Booking one treatment at a time. No structured plan. No consistent outcome.</div>
+        </div>
+        <div style="background:var(--charcoal);padding:40px 36px;">
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">After — 6-Month Skin Plan · Apr 2026</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:4px;">$5,600</div>
+          <div style="font-size:12px;color:rgba(247,243,238,0.45);margin-bottom:24px;">paid via Affirm — client chose monthly payments</div>
+          <div style="background:rgba(184,147,90,0.12);border:1px solid rgba(184,147,90,0.2);padding:16px 20px;">
+            <div style="font-size:12px;color:rgba(247,243,238,0.65);line-height:1.7;">Personalized treatment plan purchased in a single session after the provider presented a complete 6-month roadmap. Client financed via Affirm — monthly payments made it accessible.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 2 -->
+      <div style="border:1px solid var(--border);margin-bottom:2px;display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <div style="background:var(--cream);padding:40px 36px;border-right:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone);margin-bottom:20px;">Before — Individual visits</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:8px;">
+              <span style="font-size:13px;color:var(--charcoal);">1x IPL Lumecca Photofacial</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--stone);">$270</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:8px;">
+              <span style="font-size:13px;color:var(--charcoal);">Single treatment, one visit</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--stone);">Oct 2025</span>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--stone);font-style:italic;">Great client. But no plan. One treatment and then — nothing structured to bring her back.</div>
+        </div>
+        <div style="background:var(--charcoal);padding:40px 36px;">
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">After — Two plans purchased · Feb 2026</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:4px;">$12,860</div>
+          <div style="font-size:12px;color:rgba(247,243,238,0.45);margin-bottom:24px;">two separate plan purchases, same client, same visit</div>
+          <div style="background:rgba(184,147,90,0.12);border:1px solid rgba(184,147,90,0.2);padding:16px 20px;">
+            <div style="font-size:12px;color:rgba(247,243,238,0.65);line-height:1.7;margin-bottom:10px;"><strong style="color:rgba(247,243,238,0.85);">Valentine's Commitment 6-Month Skin Plan</strong> — $8,055 (Morpheus8, injectables, biostimulator package)</div>
+            <div style="font-size:12px;color:rgba(247,243,238,0.65);line-height:1.7;"><strong style="color:rgba(247,243,238,0.85);">Second plan same day</strong> — Sculptra ×3 + FormaV + VTone + Brow Lift — $4,225</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 3 -->
+      <div style="border:1px solid var(--border);margin-bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <div style="background:var(--cream);padding:40px 36px;border-right:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone);margin-bottom:20px;">Before — Individual visits</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:8px;">
+              <span style="font-size:13px;color:var(--charcoal);">Dermaplane Facial</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--stone);">$75</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:8px;">
+              <span style="font-size:13px;color:var(--charcoal);">GLP-1 + SlimShot</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--stone);">$750</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:8px;">
+              <span style="font-size:13px;color:var(--charcoal);">Dysport + Morpheus8 Body</span>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--stone);">$4,000</span>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--stone);font-style:italic;">Loyal client. Spending meaningfully — but in separate, unconnected visits without a unified plan.</div>
+        </div>
+        <div style="background:var(--charcoal);padding:40px 36px;">
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">After — Comprehensive plan · Mar 2026</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:4px;">$4,042</div>
+          <div style="font-size:12px;color:rgba(247,243,238,0.45);margin-bottom:24px;">single structured visit — $8,042 total across two March visits</div>
+          <div style="background:rgba(184,147,90,0.12);border:1px solid rgba(184,147,90,0.2);padding:16px 20px;">
+            <div style="font-size:12px;color:rgba(247,243,238,0.65);line-height:1.7;">Hydrafacial Platinum + Lumecca IPL series (face, neck, chest, hands) + Daxxify + AnteAGE skincare system + Morpheus8 Body series — all structured into a single comprehensive plan. Client spending went from isolated visits to intentional, layered outcomes.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px;padding:28px 32px;background:var(--blush);border-left:3px solid var(--gold);text-align:left;max-width:960px;">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;font-style:italic;color:var(--charcoal);line-height:1.5;margin:0;">"These are not our biggest plans. These are examples we pulled in an afternoon. The method works because we use it every single day — and now we're sharing exactly how."</p>
+        <p style="font-size:12px;color:var(--stone);margin-top:12px;font-weight:500;">— Adam Berger, Head of Operations · Glow Aesthetic Clinic</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing fade-in" id="pricing">
+  <div class="container">
+    <p class="section-label">Investment</p>
+    <h2 style="color:var(--cream);">Two ways to <em>get started.</em></h2>
+    <p class="lead">Both options include the full 9-module course and all five templates. The difference is direct access to us.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Core</h3>
+        <div class="price"><sup>$</sup>997</div>
+        <ul class="pricing-features">
+          <li>All 10 course modules</li>
+          <li>5 done-for-you templates</li>
+          <li>Lifetime access</li>
+          <li>Implement at your own pace</li>
+        </ul>
+        <a href="https://buy.stripe.com/fZu4gA7Nb0rQfuFaK167S01" class="btn-ghost" style="display:block;text-align:center;margin-top:32px;border-color:rgba(247,243,238,0.2);">Get Core</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most popular</div>
+        <h3>Core + Elite</h3>
+        <div class="price"><sup>$</sup>1,497</div>
+        <ul class="pricing-features">
+          <li>Everything in Core</li>
+          <li>30-day email Q&amp;A access</li>
+          <li>30-min call with a nurse injector</li>
+          <li>30-min call with a master aesthetician</li>
+        </ul>
+        <a href="https://buy.stripe.com/00w3cw2sR2zYcitdWd67S02" class="btn-primary" style="display:block;text-align:center;margin-top:32px;">Get Core + Elite</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq fade-in">
+  <div class="container">
+    <p class="section-label">Questions</p>
+    <h2>Things people <em>ask us.</em></h2>
+    <div class="faq-list">
+      <div class="faq-item"><h4>Do I need to offer specific treatments to use this system?</h4><p>No. The framework works with whatever services you already offer. The modules teach you how to sequence and combine your existing treatments — not add new ones.</p></div>
+      <div class="faq-item"><h4>What if I'm a solo provider with no team?</h4><p>The team module is still valuable — it shows you how to build plans that draw on your full service offering. But the consultation script, pricing, and retention modules work completely independently for solo providers.</p></div>
+      <div class="faq-item"><h4>Do I need to use RepeatMD for the follow-up system?</h4><p>RepeatMD is what we use and recommend, but the follow-up system can be adapted to any platform that lets you send plan documents digitally. The strategy is platform-agnostic.</p></div>
+      <div class="faq-item"><h4>How quickly can I implement this?</h4><p>Most providers are presenting their first skin plan within a week. The script and templates mean you don't have to figure anything out — you just follow the system.</p></div>
+      <div class="faq-item"><h4>What if I have questions after going through the course?</h4><p>The Core + Elite option includes 30-day email Q&A access, a 30-min call with a practicing nurse injector who sells skin plans daily, and a 30-min call with a master aesthetician with decades of industry experience. The Core option is self-contained — the scripts and templates are designed to be clear enough to implement on your own.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta fade-in">
+  <div class="container">
+    <p class="section-label">Ready?</p>
+    <h2>Your clients are waiting for someone<br>to make a <em>plan for them.</em></h2>
+    <p class="lead">Be that person. Everything you need is in one place, ready to use this week.</p>
+    <a href="https://buy.stripe.com/fZu4gA7Nb0rQfuFaK167S01" class="btn-primary">Get The Skin Gym Method</a>
+  </div>
+</section>
+
+<footer>
+  <p>© Glow Aesthetic Clinic · Bismarck, ND · <a href="mailto:hello@glowclinic.com">hello@glowclinic.com</a></p>
+  <p style="margin-top:8px;">Questions? Reach out — we're real people who check this personally.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
