@@ -1758,51 +1758,11 @@ function saveWorkbook(btn) {
 }
 
 
-function checkPW() {
-  var val = document.getElementById('pw-input').value.trim().toUpperCase();
-  if (val === 'SGM1') {
-    document.getElementById('pw-gate').style.display = 'none';
-    try { localStorage.setItem('sgm_auth', 'SGM1'); } catch(e) {}
-    try { sessionStorage.setItem('sgm_auth', '1'); } catch(e) {}
-  } else {
-    document.getElementById('pw-error').textContent = 'Incorrect password. Check your enrollment email.';
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-input').focus();
-  }
-}
-
-(function() {
-  var authed = false;
-  try { if (localStorage.getItem('sgm_auth') === 'SGM1') authed = true; } catch(e) {}
-  try { if (sessionStorage.getItem('sgm_auth') === '1') authed = true; } catch(e) {}
-  if (authed) {
-    var gate = document.getElementById('pw-gate');
-    if (gate) gate.style.display = 'none';
-  }
-  setTimeout(function() {
-    var gate = document.getElementById('pw-gate');
-    if (gate && gate.style.display !== 'none') {
-      var input = document.getElementById('pw-input');
-      if (input) input.focus();
-    }
-  }, 200);
-})();';
-    }
-  } catch(e) {}
-  setTimeout(() => {
-    const gate = document.getElementById('pw-gate');
-    if (gate && gate.style.display !== 'none') {
-      document.getElementById('pw-input').focus();
-    }
-  }, 100);
-})();
-
-
 showModule('welcome');
 </script>
 
 <!-- PASSWORD GATE -->
-<div id="pw-gate" style="position:fixed;inset:0;background:#1C1A18;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;">
+<div id="pw-gate" style="position:fixed;inset:0;background:#1C1A18;z-index:99999;display:flex;align-items:center;justify-content:center;">
   <div style="text-align:center;padding:48px 32px;max-width:400px;width:100%;">
     <div style="font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#B8935A;margin-bottom:16px;">Glow Aesthetic Clinic</div>
     <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#F7F3EE;line-height:1.1;margin-bottom:6px;">The Skin Gym<br><em>Method</em></div>
@@ -1810,17 +1770,63 @@ showModule('welcome');
     <div style="border:0.5px solid rgba(184,147,90,0.3);padding:32px;background:rgba(247,243,238,0.03);">
       <div style="font-size:12px;color:rgba(247,243,238,0.5);margin-bottom:14px;letter-spacing:0.06em;">Enter your access password</div>
       <input id="pw-input" type="password" placeholder="Password" autocomplete="off"
-        style="width:100%;background:rgba(247,243,238,0.06);border:0.5px solid rgba(184,147,90,0.4);color:#F7F3EE;font-size:14px;padding:14px 16px;outline:none;font-family:inherit;letter-spacing:0.06em;margin-bottom:12px;display:block;"
-        onkeydown="if(event.key==='Enter')checkPW()">
+        style="width:100%;background:rgba(247,243,238,0.06);border:0.5px solid rgba(184,147,90,0.4);color:#F7F3EE;font-size:14px;padding:14px 16px;outline:none;font-family:inherit;letter-spacing:0.06em;margin-bottom:12px;display:block;box-sizing:border-box;">
       <div id="pw-error" style="font-size:11px;color:#E24B4A;margin-bottom:12px;min-height:16px;"></div>
-      <button onclick="checkPW()"
-        style="width:100%;background:#B8935A;color:#1C1A18;border:none;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:16px;cursor:pointer;font-family:inherit;">
+      <button id="pw-btn" style="width:100%;background:#B8935A;color:#1C1A18;border:none;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:16px;cursor:pointer;font-family:inherit;">
         Access Course
       </button>
     </div>
-    <div style="margin-top:24px;font-size:11px;color:rgba(247,243,238,0.2);">Password provided in your enrollment email.<br>Questions? Email us at your course contact address.</div>
+    <div style="margin-top:24px;font-size:11px;color:rgba(247,243,238,0.2);">Password provided in your enrollment email.</div>
   </div>
 </div>
+
+<script>
+(function() {
+  var PASS = 'SGM1';
+
+  function unlock() {
+    var gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+
+  function checkPW() {
+    var input = document.getElementById('pw-input');
+    var error = document.getElementById('pw-error');
+    if (!input) return;
+    var val = input.value.trim().toUpperCase();
+    if (val === PASS) {
+      try { localStorage.setItem('sgm_auth', PASS); } catch(e) {}
+      unlock();
+    } else {
+      if (error) error.textContent = 'Incorrect password. Check your enrollment email.';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  // Check if already authenticated
+  try {
+    if (localStorage.getItem('sgm_auth') === PASS) {
+      unlock();
+    }
+  } catch(e) {}
+
+  // Wire up button and Enter key after DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('pw-btn');
+    var input = document.getElementById('pw-input');
+    if (btn) btn.addEventListener('click', checkPW);
+    if (input) input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPW();
+    });
+    // Focus input
+    if (input) setTimeout(function(){ input.focus(); }, 100);
+  });
+
+  // Also expose globally in case inline onclick is used
+  window.checkPW = checkPW;
+})();
+</script>
 
 </body>
 </html>
