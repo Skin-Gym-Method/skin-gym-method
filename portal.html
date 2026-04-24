@@ -1747,9 +1747,10 @@ function saveWorkbook(btn) {
 
 
 function checkPW() {
-  const val = document.getElementById('pw-input').value.trim();
+  var val = document.getElementById('pw-input').value.trim().toUpperCase();
   if (val === 'SGM1') {
     document.getElementById('pw-gate').style.display = 'none';
+    try { localStorage.setItem('sgm_auth', 'SGM1'); } catch(e) {}
     try { sessionStorage.setItem('sgm_auth', '1'); } catch(e) {}
   } else {
     document.getElementById('pw-error').textContent = 'Incorrect password. Check your enrollment email.';
@@ -1759,9 +1760,21 @@ function checkPW() {
 }
 
 (function() {
-  try {
-    if (sessionStorage.getItem('sgm_auth') === '1') {
-      document.getElementById('pw-gate').style.display = 'none';
+  var authed = false;
+  try { if (localStorage.getItem('sgm_auth') === 'SGM1') authed = true; } catch(e) {}
+  try { if (sessionStorage.getItem('sgm_auth') === '1') authed = true; } catch(e) {}
+  if (authed) {
+    var gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+  setTimeout(function() {
+    var gate = document.getElementById('pw-gate');
+    if (gate && gate.style.display !== 'none') {
+      var input = document.getElementById('pw-input');
+      if (input) input.focus();
+    }
+  }, 200);
+})();';
     }
   } catch(e) {}
   setTimeout(() => {
@@ -3541,9 +3554,10 @@ function saveWorkbook(btn) {
 
 
 function checkPW() {
-  const val = document.getElementById('pw-input').value.trim();
+  var val = document.getElementById('pw-input').value.trim().toUpperCase();
   if (val === 'SGM1') {
     document.getElementById('pw-gate').style.display = 'none';
+    try { localStorage.setItem('sgm_auth', 'SGM1'); } catch(e) {}
     try { sessionStorage.setItem('sgm_auth', '1'); } catch(e) {}
   } else {
     document.getElementById('pw-error').textContent = 'Incorrect password. Check your enrollment email.';
@@ -3553,9 +3567,21 @@ function checkPW() {
 }
 
 (function() {
-  try {
-    if (sessionStorage.getItem('sgm_auth') === '1') {
-      document.getElementById('pw-gate').style.display = 'none';
+  var authed = false;
+  try { if (localStorage.getItem('sgm_auth') === 'SGM1') authed = true; } catch(e) {}
+  try { if (sessionStorage.getItem('sgm_auth') === '1') authed = true; } catch(e) {}
+  if (authed) {
+    var gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+  setTimeout(function() {
+    var gate = document.getElementById('pw-gate');
+    if (gate && gate.style.display !== 'none') {
+      var input = document.getElementById('pw-input');
+      if (input) input.focus();
+    }
+  }, 200);
+})();';
     }
   } catch(e) {}
   setTimeout(() => {
