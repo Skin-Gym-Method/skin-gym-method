@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Skin Gym Method — Course Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #B8935A;
+  --gold-light: #D4AF7A;
+  --gold-pale: #F0E4CE;
+  --charcoal: #1C1A18;
+  --charcoal-light: #2A2724;
+  --cream: #F7F3EE;
+  --stone: #6B655D;
+  --green: #639922;
+  --serif: 'Cormorant Garamond', serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+html, body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── LAYOUT ─────────────────────────────────────────────── */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: 28px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-brand {
+  padding: 0 28px 24px;
+  border-bottom: 0.5px solid rgba(247,243,238,0.08);
+}
+
+.sidebar-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.sidebar-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--cream);
+}
+
+.sidebar-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.progress-section {
+  padding: 20px 28px;
+  border-bottom: 0.5px solid rgba(247,243,238,0.08);
+}
+
+.progress-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,243,238,0.4);
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 2px;
+  background: rgba(247,243,238,0.1);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  width: 10%;
+  transition: width 0.3s;
+}
+
+.progress-text {
+  font-size: 11px;
+  color: rgba(247,243,238,0.5);
+}
+
+.nav-section {
+  padding: 16px 0;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,243,238,0.3);
+  padding: 0 28px 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 28px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: rgba(247,243,238,0.6);
+  font-family: inherit;
+  font-size: 13px;
+  text-align: left;
+  width: 100%;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+
+.nav-item:hover {
+  color: var(--cream);
+  background: rgba(247,243,238,0.03);
+}
+
+.nav-item.active {
+  color: var(--cream);
+  background: rgba(184,147,90,0.08);
+  border-left-color: var(--gold);
+}
+
+.nav-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(247,243,238,0.06);
+  border: 0.5px solid rgba(184,147,90,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(247,243,238,0.7);
+  flex-shrink: 0;
+}
+
+.nav-item.active .nav-num {
+  background: var(--gold);
+  color: var(--charcoal);
+  border-color: var(--gold);
+}
+
+.nav-label {
+  flex: 1;
+  letter-spacing: 0.02em;
+}
+
+/* ─── MAIN CONTENT ──────────────────────────────────────── */
+.main {
+  flex: 1;
+  margin-left: 280px;
+  padding: 0;
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 36px;
+  border-bottom: 0.5px solid rgba(28,26,24,0.08);
+  background: var(--cream);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--charcoal);
+  cursor: pointer;
+  padding: 4px 10px 4px 0;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  color: var(--stone);
+}
+
+.breadcrumb-current {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.complete-btn {
+  background: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  padding: 10px 20px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s;
+}
+
+.complete-btn:hover { opacity: 0.85; }
+
+.content {
+  padding: 48px 36px 80px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ─── MODULE HEADER ─────────────────────────────────────── */
+.module-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.module-num-large {
+  font-family: var(--serif);
+  font-size: 64px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.module-header-text { flex: 1; }
+
+.module-header .label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.module-header h2 {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.duration {
+  font-size: 12px;
+  color: var(--stone);
+}
+
+/* ─── TABS ──────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 0.5px solid rgba(28,26,24,0.12);
+  margin-bottom: 32px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 14px 22px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--stone);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  margin-bottom: -1px;
+}
+
+.tab:hover { color: var(--charcoal); }
+
+.tab.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.25s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── VIDEO ─────────────────────────────────────────────── */
+.video-container {
+  margin: 0 auto 32px;
+  max-width: 420px;
+}
+
+.video-frame {
+  position: relative;
+  padding-bottom: 177.78%;
+  height: 0;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(184,147,90,0.3);
+  border-radius: 6px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+}
+
+.video-frame iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ─── LESSON BODY ───────────────────────────────────────── */
+.lesson-body h3 {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin: 32px 0 14px;
+  letter-spacing: -0.01em;
+}
+
+.lesson-body h3:first-child { margin-top: 0; }
+
+.lesson-body p {
+  margin-bottom: 16px;
+  color: var(--charcoal);
+  line-height: 1.7;
+}
+
+.lesson-body strong { font-weight: 600; }
+
+.script-block {
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: 24px 28px;
+  margin: 24px 0;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.script-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-style: normal;
+  margin-bottom: 10px;
+}
+
+.callout {
+  background: var(--gold-pale);
+  border-left: 3px solid var(--gold);
+  padding: 18px 22px;
+  margin: 20px 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.callout p { margin-bottom: 8px; }
+.callout p:last-child { margin-bottom: 0; }
+
+.milestone-check {
+  display: flex;
+  gap: 16px;
+  background: rgba(99,153,34,0.08);
+  border: 0.5px solid rgba(99,153,34,0.25);
+  padding: 20px 24px;
+  margin: 32px 0 16px;
+  border-radius: 6px;
+  align-items: flex-start;
+}
+
+.mc-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.milestone-check h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+
+.milestone-check p {
+  font-size: 13px;
+  color: var(--charcoal);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ─── WORKBOOK ──────────────────────────────────────────── */
+.workbook-prompt {
+  margin-bottom: 24px;
+}
+
+.workbook-prompt label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.workbook-prompt input[type="text"],
+.workbook-prompt textarea {
+  width: 100%;
+  background: white;
+  border: 0.5px solid rgba(28,26,24,0.18);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--charcoal);
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+
+.workbook-prompt input[type="text"]:focus,
+.workbook-prompt textarea:focus {
+  border-color: var(--gold);
+}
+
+.save-btn {
+  background: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  padding: 14px 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 4px;
+  margin-top: 12px;
+  transition: opacity 0.15s;
+}
+
+.save-btn:hover { opacity: 0.85; }
+
+/* ─── CASE STUDY ────────────────────────────────────────── */
+.case-study-quote {
+  font-style: italic;
+  color: var(--gold);
+  padding: 18px 22px;
+  background: rgba(184,147,90,0.06);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  margin: 20px 0;
+  line-height: 1.7;
+}
+
+/* ─── DOWNLOADS ─────────────────────────────────────────── */
+.download-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.download-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 24px;
+  background: white;
+  border: 0.5px solid rgba(28,26,24,0.1);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--charcoal);
+  transition: all 0.15s;
+}
+
+.download-item:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.download-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--gold-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.download-info { flex: 1; }
+
+.download-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.download-desc {
+  font-size: 12px;
+  color: var(--stone);
+}
+
+.download-arrow { color: var(--gold); font-size: 18px; }
+
+/* ─── PASSWORD GATE ─────────────────────────────────────── */
+#pw-gate {
+  position: fixed;
+  inset: 0;
+  background: var(--charcoal);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.pw-box {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.pw-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.pw-title {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.pw-subtitle {
+  font-size: 13px;
+  color: rgba(247,243,238,0.4);
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+.pw-form {
+  border: 0.5px solid rgba(184,147,90,0.3);
+  padding: 32px;
+  background: rgba(247,243,238,0.03);
+  border-radius: 6px;
+}
+
+.pw-prompt {
+  font-size: 12px;
+  color: rgba(247,243,238,0.5);
+  margin-bottom: 14px;
+  letter-spacing: 0.06em;
+}
+
+#pw-input {
+  width: 100%;
+  background: rgba(247,243,238,0.06);
+  border: 0.5px solid rgba(184,147,90,0.4);
+  color: var(--cream);
+  font-size: 14px;
+  padding: 14px 16px;
+  outline: none;
+  font-family: inherit;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+#pw-error {
+  font-size: 11px;
+  color: #E24B4A;
+  margin-bottom: 12px;
+  min-height: 16px;
+}
+
+#pw-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 16px;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 4px;
+}
+
+.pw-help {
+  margin-top: 24px;
+  font-size: 11px;
+  color: rgba(247,243,238,0.3);
+  line-height: 1.6;
+}
+
+/* ─── MOBILE RESPONSIVE ─────────────────────────────────── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0,0,0,0.2);
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .topbar {
+    padding: 14px 18px;
+  }
+
+  .content {
+    padding: 28px 18px 60px;
+  }
+
+  .module-header {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .module-num-large {
+    font-size: 48px;
+  }
+
+  .module-header h2 {
+    font-size: 28px;
+  }
+
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab {
+    padding: 12px 16px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .lesson-body h3 {
+    font-size: 22px;
+  }
+
+  .script-block {
+    padding: 18px 20px;
+    font-size: 14px;
+  }
+
+  .complete-btn {
+    padding: 8px 14px;
+    font-size: 10px;
+  }
+
+  .breadcrumb {
+    font-size: 11px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── PASSWORD GATE ─── -->
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-eyebrow">Glow Aesthetic Clinic</div>
+    <div class="pw-title">The Skin Gym<br><em style="color:var(--gold);font-style:italic;">Method</em></div>
+    <div class="pw-subtitle">Course Portal</div>
+    <div class="pw-form">
+      <div class="pw-prompt">Enter your access password</div>
+      <input id="pw-input" type="password" placeholder="Password" autocomplete="off">
+      <div id="pw-error"></div>
+      <button id="pw-btn">Access Course</button>
+    </div>
+    <div class="pw-help">Password provided in your enrollment email.</div>
+  </div>
+</div>
+
+<!-- ─── LAYOUT ─── -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-eyebrow">Glow Aesthetic Clinic</div>
+      <div class="sidebar-title">The Skin <em>Gym</em> Method</div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-label">Your Progress</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-text" id="progress-text">0 of 10 modules</div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">Getting Started</div>
+      <button class="nav-item active" onclick="showModule('welcome')">
+        <span class="nav-num">★</span>
+        <span class="nav-label">Start Here — Welcome</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">The Course</div>
+      <button class="nav-item" onclick="showModule('mod1')"><span class="nav-num">1</span><span class="nav-label">The Philosophy Shift</span></button>
+      <button class="nav-item" onclick="showModule('mod2')"><span class="nav-num">2</span><span class="nav-label">The Team System</span></button>
+      <button class="nav-item" onclick="showModule('mod3')"><span class="nav-num">3</span><span class="nav-label">Building Your Skin Plans</span></button>
+      <button class="nav-item" onclick="showModule('mod4')"><span class="nav-num">4</span><span class="nav-label">The Consultation Script</span></button>
+      <button class="nav-item" onclick="showModule('mod5')"><span class="nav-num">5</span><span class="nav-label">Pricing Your Plans</span></button>
+      <button class="nav-item" onclick="showModule('mod6')"><span class="nav-num">6</span><span class="nav-label">Home Care Integration</span></button>
+      <button class="nav-item" onclick="showModule('mod7')"><span class="nav-num">7</span><span class="nav-label">The Follow-Up System</span></button>
+      <button class="nav-item" onclick="showModule('mod8')"><span class="nav-num">8</span><span class="nav-label">Maintenance &amp; The Long Game</span></button>
+      <button class="nav-item" onclick="showModule('mod9')"><span class="nav-num">9</span><span class="nav-label">Keeping Clients On Plan</span></button>
+      <button class="nav-item" onclick="showModule('mod10')"><span class="nav-num">10</span><span class="nav-label">The Staff Incentive System</span></button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">Resources</div>
+      <button class="nav-item" onclick="showModule('downloads')"><span class="nav-num">↓</span><span class="nav-label">Downloads &amp; Templates</span></button>
+      <button class="nav-item" onclick="showModule('community')"><span class="nav-num">◯</span><span class="nav-label">Community</span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+      <div class="breadcrumb"><span>The Skin Gym Method</span> &nbsp;›&nbsp; <span class="breadcrumb-current" id="breadcrumb-current">Welcome</span></div>
+      <button class="complete-btn">Mark Complete ✓</button>
+    </div>
+
+    <!-- ═══ WELCOME ═══ -->
+    <div class="content panel active" id="panel-welcome">
+      <div style="background:var(--charcoal);color:var(--cream);padding:48px 36px;border-radius:8px;margin-bottom:32px;">
+        <div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Start Here — Welcome</div>
+        <h2 style="font-family:var(--serif);font-size:40px;font-weight:300;line-height:1.15;margin-bottom:18px;">You made the right call. <em style="color:var(--gold);font-style:italic;">Let's get to work.</em></h2>
+        <p style="color:rgba(247,243,238,0.75);line-height:1.7;margin-bottom:0;">You just bought the exact system we run inside our own clinic every day. It's what moved us off low, unpredictable single-treatment tickets and onto structured, multi-month skin plans. It changed how stable and how profitable the business is. All of it is in here.</p>
+      </div>
+
+      <div class="callout">
+        <p><strong style="color:var(--gold);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;">A Quick Word on What This Is</strong></p>
+        <p style="margin-top:8px;">This is a business and consultation system. It teaches you how to build plans, run the consult, price, follow up, and keep clients. Every treatment, sequence, and timing window in here is how <em>we</em> structure plans. It is not a clinical rulebook. Your medical director's protocols come first, always, and every plan gets built around the actual person in your chair. We'll say that again where it matters.</p>
+      </div>
+
+      <div class="callout" style="background:rgba(184,147,90,0.08);border-color:var(--gold);">
+        <p><strong style="color:var(--gold);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;">⚡ Your Day-One Win</strong></p>
+        <p style="margin-top:8px;">In your very next consult, stop taking orders and start guiding an outcome. One line does most of the work:</p>
+        <p style="font-style:italic;font-family:var(--serif);font-size:18px;color:var(--gold);margin-top:12px;">"If your goal is real change, not just a temporary improvement, a plan is how you get there."</p>
+      </div>
+
+      <h3 style="font-family:var(--serif);font-size:28px;font-weight:400;margin:40px 0 16px;">How to use this course</h3>
+      <p>Each module has three parts — the Lesson, the Workbook, and a Case Study. Read the lesson, do the workbook honestly, then read the case to see it play out. One module a week. Don't jump ahead — the modules stack.</p>
+      <p>Most providers see something click in week one, before they ever finish the course. The system works the day you start using it. It only works if you use it.</p>
+
+      <h3 style="font-family:var(--serif);font-size:28px;font-weight:400;margin:32px 0 16px;">What's next</h3>
+      <p>Open <strong>Module 1 — The Philosophy Shift</strong> in the left sidebar when you're ready. It's the foundation for everything else.</p>
+    </div>
+
+    <!-- ═══ MODULE 1 ═══ -->
+    <div class="content panel" id="panel-mod1" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">01</div>
+        <div class="module-header-text">
+          <div class="label">Module 1</div>
+          <h2>The Philosophy Shift:<br>We Don't Sell Treatments.<br>We Guide Outcomes.</h2>
+          <div class="duration">⏱ ~12 min read + workbook</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson1')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook1')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy1')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson1">
+        <div class="video-container"><div class="video-frame"><iframe src="https://www.youtube.com/embed/KFnDoIgg0XM?rel=0&modestbranding=1&vq=hd1080&hd=1" allowfullscreen loading="lazy"></iframe></div></div>
+        <div class="lesson-body">
+          <h3>The Shift the Whole Course Is Built On</h3>
+          <p>Most medspas run like a menu. The client picks, the provider performs, the client leaves having made a money decision based on what felt affordable that day. That isn't a clinical practice. It's a service counter. It's also why so many clinics post low average tickets with the same equipment and training as the clinics doing five and ten times more per client.</p>
+          <p>Here's the change. You stop selling treatments. You start guiding outcomes. You assess, you give a clear recommendation, and you let the client decide whether to commit to the path. That is better care. It is also a better business. Those two things are not in tension, and that is the entire point of this course.</p>
+
+          <h3>Think About Your Dentist</h3>
+          <p>Your dentist didn't hand you a menu and ask which procedure you'd like. They looked, they told you what they found, they gave you a clear recommendation. You said yes or no. Either way, the recommendation came from their training, not your guess.</p>
+          <p>Run your consults the same way. Assess. Form a recommendation. Present the path to the result the client actually wants. Their job is to decide, and if it's a yes, to show up. Leading the conversation isn't pressure. It's the expertise they came in for.</p>
+
+          <h3>The Gym, Obviously</h3>
+          <p>Nobody walks into a gym expecting abs by Friday. Everyone accepts that real physical change takes a plan, consistency, and time. Skin is no different. One laser session stimulates collagen. One peel brightens pigment. But real, visible, lasting change comes from treatments layered on purpose, over time, backed by the right home care.</p>
+
+          <h3>What Changes When You Make the Shift</h3>
+          <p>Average tickets go up, because you present whole plans instead of single treatments. Retention climbs, because the client is following a roadmap they already committed to. Provider income grows. And your team stops feeling like salespeople, because they aren't selling. They're recommending a path to a result. Every clinician does that.</p>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 1 Milestone</h4><p>Lock in one belief. Your job is to guide outcomes, not take orders. In your next consult, lead it. Assess first, then recommend.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook1">
+        <div class="lesson-body">
+          <h3>Module 1 Workbook — The Philosophy Shift</h3>
+          <p>Before moving to Module 2, work through this honestly. The point is to make sure the philosophy is genuinely landing for you and your team.</p>
+
+          <div class="workbook-prompt"><label>1. Be honest. Right now, are your providers selling treatments or guiding outcomes?</label><textarea rows="4" placeholder="Describe what currently happens at your clinic during consultations..."></textarea></div>
+
+          <div class="workbook-prompt"><label>2. Name one client from the last six months who should have been on a full plan but booked single treatments. What did she book? What should the plan have been?</label><textarea rows="5" placeholder="What she booked:&#10;What the full plan should have been:"></textarea></div>
+
+          <div class="workbook-prompt"><label>3. Where in your consult are you letting clients pick, instead of leading them to a recommendation?</label><textarea rows="3"></textarea></div>
+
+          <div class="workbook-prompt"><label>4. Write your recommendation sentence in your own words.</label><textarea rows="3"></textarea></div>
+
+          <div class="workbook-prompt"><label>5. When will you first talk to your team about this?</label><input type="text" placeholder="Date and time"></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy1">
+        <div class="lesson-body">
+          <h3>Case Study — From One-Off Appointments to a Six-Month Plan</h3>
+          <p style="font-style:italic;color:var(--stone);">Real client. Name removed. Plan value and date are exact.</p>
+
+          <p>This client had been with us a while, but always one treatment at a time. Her last stretch of individual visits, Dysport and lip filler, came to $1,148. Good spending. No plan behind it. She booked when she felt like it, and there was no consistent outcome we were working toward.</p>
+
+          <p>Then a provider ran the consultation differently. Instead of booking the next single treatment, she did a full skin analysis and presented a complete six-month roadmap in one sitting.</p>
+
+          <p>The client bought the whole plan that session. <strong>$5,600, in April 2026.</strong> She financed it through Affirm and chose monthly payments, which is what made a plan that size feel easy.</p>
+
+          <div class="case-study-quote">Same client. Same clinic. The only thing that changed is that someone stopped taking her order and showed her a path. That is the entire shift this module is about.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 2 ═══ -->
+    <div class="content panel" id="panel-mod2" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">02</div>
+        <div class="module-header-text">
+          <div class="label">Module 2</div>
+          <h2>The Team System</h2>
+          <div class="duration">⏱ ~12 min read + action step</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson2')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook2')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy2')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson2">
+        <div class="video-container"><div class="video-frame"><iframe src="https://www.youtube.com/embed/XWFNx_WyR6U?rel=0&modestbranding=1&vq=hd1080&hd=1" allowfullscreen loading="lazy"></iframe></div></div>
+        <div class="lesson-body">
+          <h3>The Silo Problem</h3>
+          <p>In most medspas, providers stay in lanes. The aesthetician does facials. The nurse injector does injectables. They refer to each other now and then, but it's loose and inconsistent. Every provider leaves money on the table, because each one only sees their slice of what the client could be doing.</p>
+          <p>The plan model ends that. When every provider builds plans off the full menu, every provider feeds every other provider. Automatically. Because the plan calls for it.</p>
+
+          <h3>How the Loop Works</h3>
+          <p>A nurse builds a plan for an anti-aging client. Her own services land in it naturally — RF microneedling, injectables, biostimulators. But a complete plan also needs clinical facials, gentler resurfacing, and a real home care routine. So she builds those in too. Not as a loose "you should also see someone." As a planned part of the result.</p>
+          <p>Now the client is on the books with both providers all year. When the aesthetician spots something during a facial that the nurse should handle, she routes it. The loop closes on its own.</p>
+
+          <h3>What That Looks Like Day to Day</h3>
+          <p>Your nurse builds a plan with facials in it, and your aesthetician's book fills. Your aesthetician flags a concern for energy-based treatment, and your nurse's book fills. The plan creates the referral. No awkward handoffs. No extra ad spend.</p>
+
+          <h3>What to Tell Your Team</h3>
+          <div class="script-block"><span class="script-label">Say this plainly in a team meeting</span>"We're done assigning clients to providers. We build plans that include all of us, wherever it serves the client. We're not competing. We're compounding."</div>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 2 Action Step</h4><p>Book a team meeting this week. Walk through this lesson together. Get every provider to commit to building cross-discipline plans, where it's clinically right, starting next week.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook2">
+        <div class="lesson-body">
+          <h3>Module 2 Workbook — The Team System</h3>
+          <p>Use this to map your current provider lanes and find the cross-referral opportunities you're missing.</p>
+
+          <div class="workbook-prompt"><label>1. List every service your clinic offers, by provider type.</label><textarea rows="5" placeholder="Nurse injector services...&#10;Aesthetician services...&#10;Other providers..."></textarea></div>
+
+          <div class="workbook-prompt"><label>2. For an anti-aging plan, which nurse services and which aesthetician services would naturally belong in it?</label><textarea rows="4" placeholder="Nurse: ...&#10;Aesthetician: ..."></textarea></div>
+
+          <div class="workbook-prompt"><label>3. Write one cross-provider sentence each provider will use in their next five consults.</label><textarea rows="3"></textarea></div>
+
+          <div class="workbook-prompt"><label>4. When is the team meeting?</label><input type="text" placeholder="Date and time"></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy2">
+        <div class="lesson-body">
+          <h3>Case Study — A Loyal Client Whose Spending Was Scattered</h3>
+          <p style="font-style:italic;color:var(--stone);">Real client. Name removed. Plan values and date are exact.</p>
+
+          <p>This was already a loyal, good client. The problem was never her spending. It was that her spending was scattered. A $75 dermaplane facial here. A $750 GLP-1 and SlimShot visit there. A $4,000 Dysport and Morpheus8 Body appointment somewhere else. Real money, but every visit was its own island. No plan tying any of it together, and no provider seeing the whole picture.</p>
+
+          <p>So a provider sat down and built one unified plan off the full menu — Hydrafacial Platinum, a Lumecca IPL series across face, neck, chest, and hands, Daxxify, an AnteAGE skincare system, and a Morpheus8 Body series. All structured into a single comprehensive plan instead of a dozen disconnected appointments.</p>
+
+          <p>That plan came to <strong>$4,042 in one structured visit in March 2026</strong>, part of $8,042 across two March visits.</p>
+
+          <div class="case-study-quote">Her spending didn't jump by magic. It got organized. Isolated visits became intentional, layered outcomes, and every provider whose service was in that plan now had her on their books on a schedule. That is what the team system does.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 3 ═══ -->
+    <div class="content panel" id="panel-mod3" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">03</div>
+        <div class="module-header-text">
+          <div class="label">Module 3</div>
+          <h2>Building Your Skin Plans</h2>
+          <div class="duration">⏱ ~18 min read + workbook</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson3')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook3')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy3')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson3">
+        <div class="video-container"><div class="video-frame"><iframe src="https://www.youtube.com/embed/cRAwg2UBnQg?rel=0&modestbranding=1&vq=hd1080&hd=1" allowfullscreen loading="lazy"></iframe></div></div>
+        <div class="lesson-body">
+          <div class="callout"><p><strong style="color:var(--gold);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;">Read This First</strong></p><p style="margin-top:8px;">What follows is the framework we use to build plans. The orders, timing windows, and pairings are how we do it. They are not a clinical standard, and they do not replace your medical director's protocols or a real assessment of the individual client. Use this for structure. Let clinical judgment govern every actual plan.</p></div>
+
+          <h3>Three Things a Plan Has to Get Right</h3>
+          <p>Every plan that works respects three things. Get them right and the client sees results worth talking about. Miss one and the plan underperforms — and the client wrongly decides the treatments don't work.</p>
+          <p><strong>Sequence.</strong> Some treatments are best done before others, so each one builds on the last instead of fighting it. Your protocols set the right order for your clinic.</p>
+          <p><strong>Spacing.</strong> Timing between treatments drives the result as much as the treatments do. Tissue needs room to respond and recover. Follow the windows your protocols set.</p>
+          <p><strong>Combination.</strong> Which treatments pair well matters as much as which ones you pick. Build around pairings your clinic trusts.</p>
+
+          <h3>The Five Treatment Categories</h3>
+          <p>A solid plan usually pulls from at least four of these. The treatments listed are examples — swap in whatever your clinic offers.</p>
+          <p><strong>Collagen stimulation.</strong> RF microneedling, microneedling, other energy-based collagen work.</p>
+          <p><strong>Hydration.</strong> Hydrafacial-type treatments, timed after active treatments.</p>
+          <p><strong>Biostimulators.</strong> Injectable biostimulators, per your protocols.</p>
+          <p><strong>Pigment and redness correction.</strong> IPL and related modalities.</p>
+          <p><strong>Chemical peels.</strong> A peel series matched to skin type and concern.</p>
+
+          <h3>The Four Concern Categories</h3>
+          <p><strong>Anti-aging.</strong> Lead with collagen stimulation and biostimulators. Layer in hydration, peels, and neuromodulators across six to twelve months.</p>
+          <p><strong>Pigmentation.</strong> Usually lead with peels, then an IPL series. Support with brightening home care.</p>
+          <p><strong>Texture.</strong> Microneedling, peels, targeted home care.</p>
+          <p><strong>Acne and scarring.</strong> Get active acne under control first. Move to scar revision after that.</p>
+          <p>These are starting structures. Not prescriptions. Every plan gets built for the person in front of you.</p>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 3 Milestone</h4><p>You're ready for Module 4 when you can sketch a full six-month plan for any of the four concern categories, off your own menu, without the workbook. Practice on three made-up clients first.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook3">
+        <div class="lesson-body">
+          <h3>Module 3 Workbook — Building Your First Plan</h3>
+          <p>Pick one real client from your last 30 days who should be on a plan, and build it here.</p>
+
+          <div class="workbook-prompt"><label>1. Pick a real client from the last 30 days who should be on a plan. Note the main concern.</label><textarea rows="3"></textarea></div>
+
+          <div class="workbook-prompt"><label>2. Choose treatments from each of the five categories, off your menu.</label><textarea rows="6" placeholder="Collagen stimulation:&#10;Hydration:&#10;Biostimulators:&#10;Pigment and redness correction:&#10;Chemical peels:"></textarea></div>
+
+          <div class="workbook-prompt"><label>3. Sequence them month by month for six months, inside your protocols' timing.</label><textarea rows="7" placeholder="Month 1:&#10;Month 2:&#10;Month 3:&#10;Month 4:&#10;Month 5:&#10;Month 6:"></textarea></div>
+
+          <div class="workbook-prompt"><label>4. Total plan investment, and the monthly equivalent.</label><input type="text" placeholder="$X,XXX total / $XXX per month"></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy3">
+        <div class="lesson-body">
+          <h3>Case Study — Brenda's 12-Month Plan Build</h3>
+          <p style="font-style:italic;color:var(--stone);">Representative example — it illustrates the principle in this module.</p>
+
+          <p>A client we'll call Brenda, 47, came in asking for "just some Botox." Her intake told a bigger story: jawline laxity, fine lines, sun damage.</p>
+
+          <p>The plan we built ran twelve months. It pulled from all five categories — collagen stimulation quarterly, a biostimulator, an IPL series for pigment, structural support mid-plan, hydration after every active treatment, peels on a schedule, neuromodulator quarterly, and a home care routine the whole way through. Sequencing and spacing followed our protocols.</p>
+
+          <p><strong>Total plan investment: $7,400</strong>, financed at about $617 a month over twelve months.</p>
+
+          <p>By month twelve, Brenda had seen steady progress every single month, and that kept her committed. She sent us a friend and rolled straight into maintenance. We'll pick her story back up in Module 8.</p>
+
+          <div class="case-study-quote">What made it work: every category covered, timing followed exactly, no gaps. Visible monthly progress is what carried her through the whole plan.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 4 ═══ -->
+    <div class="content panel" id="panel-mod4" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">04</div>
+        <div class="module-header-text">
+          <div class="label">Module 4</div>
+          <h2>The Consultation Script</h2>
+          <div class="duration">⏱ ~20 min read + workbook</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson4')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook4')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy4')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson4">
+        <div class="video-container"><div class="video-frame"><iframe src="https://www.youtube.com/embed/cWG67sF15_8?rel=0&modestbranding=1&vq=hd1080&hd=1" allowfullscreen loading="lazy"></iframe></div></div>
+        <div class="lesson-body">
+          <h3>Know the Structure Well Enough That It Sounds Like You</h3>
+          <p>You are not memorizing a script word for word. You are learning the structure and a few key lines, then saying them in your own voice. A consult only lands when it sounds like a real conversation. Never rehearsed. Never pushy.</p>
+
+          <h3>Step 1. The Skin Analysis</h3>
+          <p>Before you say one word about treatments, assess the skin properly. Take photos. Say what you see out loud. When you take real time to look before you recommend anything, the client feels something most have never felt at a medspa. They feel seen.</p>
+
+          <h3>Step 2. The Transition</h3>
+          <div class="script-block"><span class="script-label">The transition — in your own words</span>"Based on everything we've talked about and what I'm seeing, I want to show you what I think is the best path forward. My goal isn't to do one treatment today. It's to get your skin where you want it. To do that right, we need a plan."<br><br>[Let it sit a second. Then:]<br><br>"If you want real change, not just a temporary improvement, a plan is how you get there."</div>
+
+          <h3>Step 3. Present the Plan</h3>
+          <p>Walk the plan month by month. Explain why each treatment is in there. The clinical reasoning is what makes it feel like care instead of a pitch. Check in as you go: "Does that make sense so far? Any questions on why I chose those?"</p>
+
+          <h3>Step 4. The Monthly Reframe</h3>
+          <div class="script-block"><span class="script-label">Before the total, frame the monthly number</span>"Broken down monthly, this plan runs about [$X a month]. This is a complete, guided program with a specific result at the end, not a string of one-off decisions."</div>
+
+          <h3>Step 5. State the Price</h3>
+          <p>Say the price clearly. Don't hedge. Don't apologize. Then <strong>stop</strong> and give the client room to think. The quiet after the price isn't a trick. It's just respecting that a person needs a moment to process and land on their own decision. Don't fill the silence for them.</p>
+
+          <h3>The Four Objections You'll Hear</h3>
+          <p>These are honest answers, not rebuttals. You're addressing a real concern. You're never overriding a real no.</p>
+
+          <div class="script-block"><span class="script-label">"It's too expensive."</span>"I hear you, it's an investment. Monthly it's about [$X]. What you're paying for is a clinically reasoned plan built for the result we talked about, with me guiding you the whole way. If the full plan isn't right for your budget, we can look at a smaller-scope plan."</div>
+
+          <div class="script-block"><span class="script-label">"I'm not sure I'll stick with it."</span>"That's actually part of why a plan helps. You decide once, so you're not re-deciding every month. Clients on a plan are far more consistent, and consistency is what gets the result."</div>
+
+          <div class="script-block"><span class="script-label">"I've tried things before and they didn't work."</span>"I hear that a lot, and I get the frustration. Usually it's not that the treatments didn't work. It's that they weren't sequenced, weren't backed by home care, or had no strategy tying them together. That strategy is what we're building."</div>
+
+          <div class="script-block"><span class="script-label">"Can I just do one treatment and see?"</span>"Of course, I want you comfortable. One treatment will give you a result. It just won't get you to the goal you described. So let's do this. Start with [first treatment] today, and I'll send you the full plan so you can see the whole picture. No pressure."</div>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 4 Milestone</h4><p>You're ready for Module 5 when you can run the whole consult, opening through all four objections, out loud and in your own words, without reading. Practice with a teammate.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook4">
+        <div class="lesson-body">
+          <h3>Module 4 Workbook — The Consultation</h3>
+          <p>Practice the full consult out loud. Record yourself on your phone and play it back.</p>
+
+          <div class="workbook-prompt"><label>1. Write your opening line in your own voice.</label><textarea rows="3"></textarea></div>
+
+          <div class="workbook-prompt"><label>2. Write a response to each of the four objections, in your own words.</label><textarea rows="8" placeholder="'It's too expensive':&#10;'I'm not sure I'll stick with it':&#10;'I've tried things before and they didn't work':&#10;'Can I just do one treatment and see?':"></textarea></div>
+
+          <div class="workbook-prompt"><label>3. Run the full consult as a roleplay with a teammate. Note the awkward spots.</label><textarea rows="3"></textarea></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy4">
+        <div class="lesson-body">
+          <h3>Case Study — A Consultation, Start to Finish</h3>
+          <p style="font-style:italic;color:var(--stone);">Representative example — it illustrates the principle in this module.</p>
+
+          <p>This is a representative consult that closed a $6,400 plan.</p>
+
+          <p>After a thorough skin analysis, the provider transitioned: "Based on what I'm seeing, I want to show you what I think is the best path forward." Then she walked the client through a six-month plan, treatment by treatment, explaining the reasoning behind each one and checking in along the way.</p>
+
+          <p>When the client said the plan made sense, the provider gave the monthly number, then the total, then stopped talking. After a pause, the client said, "Okay. Yeah, let's do it."</p>
+
+          <div class="case-study-quote">The provider explained the why at every step, gave the price without apology, and left the client quiet room to decide. Clear reasoning plus space to think. That's what lets a client land on their own confident yes.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 5 ═══ -->
+    <div class="content panel" id="panel-mod5" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">05</div>
+        <div class="module-header-text">
+          <div class="label">Module 5</div>
+          <h2>Pricing Your Plans</h2>
+          <div class="duration">⏱ ~15 min read + workbook</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson5')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook5')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy5')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson5">
+        <div class="lesson-body">
+          <h3>Three Ways to Pay</h3>
+          <p>Plans get paid for three ways. Most clinics should offer all three.</p>
+          <p><strong>Pay in full.</strong> The cleanest option. Consider a small discount, five to ten percent, to encourage it. Best for clients who want it simple.</p>
+          <p><strong>Monthly payments.</strong> Through a financing provider or in-house. A big plan becomes a manageable monthly number. Best for most clients. One note: third-party financing companies have their own advertising and disclosure rules. Follow them.</p>
+          <p><strong>Phase-based.</strong> Split the plan into phases. The client commits one phase at a time. Best for clients nervous about a long commitment.</p>
+
+          <h3>Three Plan Tiers</h3>
+          <p><strong>Tier 1, Foundation.</strong> A focused plan on the main concern, roughly four to six months. The right entry point for smaller budgets.</p>
+          <p><strong>Tier 2, Comprehensive.</strong> A multi-category plan, roughly six to nine months. Most clients land here.</p>
+          <p><strong>Tier 3, Premium.</strong> A full multi-modality plan, usually twelve months. For clients ready to invest seriously.</p>
+          <p>Set your real price ranges off your own treatment costs.</p>
+
+          <h3>Match the Plan to the Client, Both Directions</h3>
+          <p>Don't default to the middle tier because it feels safe. If a client's goals genuinely call for Tier 3, recommend Tier 3. If their goals are met by Tier 1, recommend Tier 1. Overselling and underselling are both failures — both hand the client something other than what they need. The honest plan is the one that fits their real goals and their real budget.</p>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 5 Milestone</h4><p>Build your three tier plans this week off your real treatment costs. Work out the monthly number for each. Have them ready before any consult.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook5">
+        <div class="lesson-body">
+          <h3>Module 5 Workbook — Pricing Your Plans</h3>
+          <p>Build your three tiers off your own real treatment costs.</p>
+
+          <div class="workbook-prompt"><label>1. Calculate your Tier 1 (Foundation) plan total.</label><textarea rows="4" placeholder="Treatments included and individual prices..."></textarea></div>
+
+          <div class="workbook-prompt"><label>2. Calculate your Tier 2 (Comprehensive) plan total.</label><textarea rows="4"></textarea></div>
+
+          <div class="workbook-prompt"><label>3. Calculate your Tier 3 (Premium) plan total.</label><textarea rows="4"></textarea></div>
+
+          <div class="workbook-prompt"><label>4. Monthly equivalent for each tier — total divided by duration.</label><textarea rows="3"></textarea></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy5">
+        <div class="lesson-body">
+          <h3>Case Study — A $270 Client Who Committed to $12,860 in Plans</h3>
+          <p style="font-style:italic;color:var(--stone);">Real client. Name removed. Plan values and date are exact.</p>
+
+          <p>She first came in for a single IPL Lumecca photofacial. $270, one visit, back in October 2025. A great client, but no plan, and nothing structured to bring her back.</p>
+
+          <p>When she came in for a consult, the provider didn't reach for a safe middle option. She read what the client actually wanted and built for it.</p>
+
+          <p>The client committed to two plans in the same visit, in February 2026. A Valentine's Commitment six-month skin plan at <strong>$8,055</strong>, covering Morpheus8, injectables, and a biostimulator package. And a second plan the same day — three rounds of Sculptra plus FormaV, VTone, and a brow lift — at <strong>$4,225</strong>. <strong>$12,860 in total.</strong></p>
+
+          <div class="case-study-quote">A safe, mid-tier recommendation would have left most of that on the table, and left the client without the result she came in wanting. Match the plan to what the client actually wants, in whichever direction the truth points. Sometimes that direction is up.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 6 ═══ -->
+    <div class="content panel" id="panel-mod6" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">06</div>
+        <div class="module-header-text">
+          <div class="label">Module 6</div>
+          <h2>Home Care Integration</h2>
+          <div class="duration">⏱ ~12 min read + workbook</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson6')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook6')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy6')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson6">
+        <div class="lesson-body">
+          <h3>Home Care Carries Most of the Long-Term Result</h3>
+          <p>Every in-clinic treatment lives or dies on what happens between visits. Without consistent home care, even a great plan underperforms. Clients who follow a structured routine see noticeably better and longer-lasting results than the ones who don't. Treat home care as part of the plan, not an add-on.</p>
+
+          <h3>A Standard Home Care Foundation</h3>
+          <p>A typical foundation: in the morning, gentle cleanser, antioxidant serum, moisturizer, broad-spectrum SPF, every day. In the evening, cleanser, an appropriate active, moisturizer, any targeted treatment. Adjust to each client's skin and concern.</p>
+
+          <h3>Home Care by Concern</h3>
+          <p><strong>Anti-aging.</strong> Growth factor or peptide support, a retinoid as tolerated, eye care for fine lines.</p>
+          <p><strong>Pigmentation.</strong> Brightening agents, gentler exfoliation, strict daily SPF.</p>
+          <p><strong>Texture.</strong> Chemical exfoliants and a retinoid as tolerated, hydrating and smoothing support.</p>
+          <p><strong>Acne.</strong> The right cleanser and targeted treatments, an oil-free non-comedogenic moisturizer and SPF.</p>
+
+          <h3>Choosing Your Clinical Skincare Line</h3>
+          <p>Build your home care around one clinical-grade line. That keeps your recommendations consistent and your team fluent in what you carry. Choose your line on a few things: formulation quality, clinical results, how well it pairs with your in-clinic treatments, and the training and support the brand gives your staff.</p>
+          <p>Pick the line that fits your clinic and your clients. Once you've chosen it, build every home care protocol in this module around it, so the routine you prescribe is one your team knows cold and one you can actually keep in stock.</p>
+          <p>One note on transparency. If your clinic ever earns anything from the skincare brand you recommend — through commission, an affiliate arrangement, or any other deal — be upfront about it with your clients. A recommendation a client trusts is worth far more than a commission you didn't disclose.</p>
+
+          <h3>How to Present Home Care</h3>
+          <div class="script-block"><span class="script-label">Frame it as part of the plan</span>"Your routine at home does a big share of the work between visits. The in-clinic treatments are the catalyst. The home care is what makes the results last. I'm going to build a routine for your specific concerns. It's a core part of the plan, not an extra."</div>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 6 Action Step</h4><p>Build standard home care protocols for each of the four concern categories. Keep them ready, printed or digital, for every consult.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook6">
+        <div class="lesson-body">
+          <h3>Module 6 Workbook — Home Care Integration</h3>
+
+          <div class="workbook-prompt"><label>1. Anti-aging home care protocol.</label><textarea rows="4" placeholder="AM routine:&#10;PM routine:"></textarea></div>
+
+          <div class="workbook-prompt"><label>2. Pigmentation home care protocol.</label><textarea rows="4"></textarea></div>
+
+          <div class="workbook-prompt"><label>3. Acne and texture home care protocol.</label><textarea rows="4"></textarea></div>
+
+          <div class="workbook-prompt"><label>4. Which clinical line will you build everything around, and is there a relationship to disclose?</label><textarea rows="3"></textarea></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy6">
+        <div class="lesson-body">
+          <h3>Case Study — Two Clients, One Difference</h3>
+          <p style="font-style:italic;color:var(--stone);">Representative example — it illustrates the principle in this module.</p>
+
+          <p>Two clients, similar pigment concerns, similar age and skin type, both on the same in-clinic plan.</p>
+
+          <p><strong>Client A</strong> used inconsistent drugstore products and put SPF on only when it was sunny. <strong>Client B</strong> followed her prescribed clinical routine every day, SPF every morning.</p>
+
+          <p>At six months, Client A had real but slow improvement, with some new sun-related pigment showing up. Client B had clearly faster, fuller improvement, no new pigment, and overall skin quality better than the in-office treatments alone would explain.</p>
+
+          <div class="case-study-quote">A big share of the long-term result comes from what happens at home. Skip professional home care and you've handed the client half the system — and she'll wrongly conclude the treatments fell short.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 7 ═══ -->
+    <div class="content panel" id="panel-mod7" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">07</div>
+        <div class="module-header-text">
+          <div class="label">Module 7</div>
+          <h2>The Follow-Up System</h2>
+          <div class="duration">⏱ ~14 min read + action step</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson7')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook7')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy7')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson7">
+        <div class="lesson-body">
+          <h3>Not Everyone Says Yes in the Room, and That's Normal</h3>
+          <p>An immediate yes is not the bar. Plenty of good clients need time. What matters is what you do after they leave. This system works no matter what tools or budget you have.</p>
+          <p>Be honest with yourself about this. A follow-up does not convert every client. A real share of "I'll think about it" turns into a plan with a good follow-up. Some won't, and that's a normal, healthy part of the work. You're not chasing everyone. You're recovering the winnable ones, without ever pushing.</p>
+
+          <h3>Send the Plan Within 24 Hours</h3>
+          <p>Within a day of any consult where the client didn't commit, send their plan. Put a gentle expiration on it — five to seven days. That creates a natural deadline that isn't coming from you personally.</p>
+
+          <h3>Five Ways to Deliver a Plan</h3>
+          <p>You don't need special software.</p>
+          <p><strong>Printed plan.</strong> Fill out the template, hand it over or mail it, write the date on top. A well-printed plan can feel premium.</p>
+          <p><strong>PDF by email or text.</strong> Fill out the template, save as a PDF, send it. Free and clean.</p>
+          <p><strong>Google Doc or Canva link.</strong> Share a polished, on-brand document by link.</p>
+          <p><strong>A dedicated plan platform.</strong> If your clinic uses one, use its plan-sending and expiration features.</p>
+          <p><strong>Your booking software.</strong> Most booking platforms have package or bundle features with payment links built in.</p>
+
+          <h3>The Follow-Up Messages</h3>
+          <p>When the plan expires, a first message in your own voice.</p>
+          <div class="script-block"><span class="script-label">First follow-up — when the plan expires</span>"Hi [Name], I noticed the plan I put together expired. I wanted to check if there was anything you weren't sure about, or anything I can clear up. I want you to have what you need to make the right call for you."</div>
+
+          <p>If there's no reply after about a week, one last message.</p>
+          <div class="script-block"><span class="script-label">Last follow-up — about a week later</span>"Hi [Name], just one more note and then I'll leave it with you. I'm still thinking about your skin and what we talked about. If the timing isn't right, that's completely okay. I'd love to reconnect when it is."</div>
+
+          <p>Two follow-ups, then stop. More than that becomes pressure and costs you the relationship.</p>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 7 Action Step</h4><p>Pick your delivery method from the five and set it up today. Save both follow-up messages in your phone so you can send them in seconds.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook7">
+        <div class="lesson-body">
+          <h3>Module 7 Workbook — The Follow-Up System</h3>
+
+          <div class="workbook-prompt"><label>1. Which delivery method will you use?</label><input type="text" placeholder="Printed / PDF / Google Doc or Canva / plan platform / booking software"></div>
+
+          <div class="workbook-prompt"><label>2. Write your first follow-up message in your own voice.</label><textarea rows="4"></textarea></div>
+
+          <div class="workbook-prompt"><label>3. Write your last follow-up message.</label><textarea rows="4"></textarea></div>
+
+          <div class="workbook-prompt"><label>4. What's your standard plan expiration window?</label><input type="text" placeholder="5-7 days recommended"></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy7">
+        <div class="lesson-body">
+          <h3>Case Study — A Follow-Up That Closed the Plan</h3>
+          <p style="font-style:italic;color:var(--stone);">Representative example — it illustrates the principle in this module.</p>
+
+          <p>A client came in, liked her plan, said she needed to think about it. She left without committing.</p>
+
+          <p><strong>Day one</strong>, the provider sent the plan as a PDF and noted the quoted price was held for seven days.</p>
+
+          <p><strong>Day eight</strong>, the plan expired with no reply. The provider sent the first follow-up message.</p>
+
+          <p><strong>Day nine</strong>, the client wrote back: "Honestly, I just got distracted. I want to do it, can you re-send?" The provider re-sent, and the client committed to a <strong>$4,800 plan</strong>.</p>
+
+          <div class="case-study-quote">Most no's are really not-yet. A calm, no-pressure follow-up recovers a real share of them. Not all of them — and that's fine. Send the two messages, recover the winnable ones, and don't take the rest personally.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 8 ═══ -->
+    <div class="content panel" id="panel-mod8" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">08</div>
+        <div class="module-header-text">
+          <div class="label">Module 8</div>
+          <h2>Maintenance: The Plan Never Truly Ends</h2>
+          <div class="duration">⏱ ~14 min read</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson8')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook8')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy8')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson8">
+        <div class="lesson-body">
+          <h3>Plant the Seed on Day One</h3>
+          <p>Skin keeps aging. After month six, after month twelve, always. The common mistake is waiting until the end of a plan to bring up maintenance, where it can feel like a surprise or an upsell. Bring it up at the very first consult instead.</p>
+          <div class="script-block"><span class="script-label">Say this on day one, every time</span>"One thing I want you to know from the start. Skin keeps changing. This plan will get your skin to a much better place. The lighter maintenance plan we build afterward is what keeps it there. Same as the gym — you don't train for a year and then stop."</div>
+
+          <h3>Why Maintenance Clients Are Your Best Clients</h3>
+          <p>They already trust you — the hard part of the relationship is done. They barely need convincing, because they've watched consistency work. And they refer well, because they have real before-and-after results to point to.</p>
+
+          <h3>The Maintenance Consult</h3>
+          <p>At the last appointment of the plan, put the first photos and the current photos side by side and walk through the progress out loud.</p>
+          <div class="script-block"><span class="script-label">The maintenance consult</span>"Look at where we started versus where you are now. Here, and here. Right on track. Now I want to build your maintenance plan. The treatments from here are lighter and less often. We did the heavy lifting. Now we protect it."</div>
+
+          <h3>What a Maintenance Plan Looks Like</h3>
+          <p>Lighter and less frequent than the original — which also means a smaller investment and an easier yes. Usually periodic collagen and neuromodulator treatments, regular hydration, an occasional biostimulator, and continued home care. Price it as an annual commitment.</p>
+          <p>The strongest retention line, said with the actual photos in front of the client:</p>
+          <div class="script-block"><span class="script-label">The most powerful line in retention</span>"Look at where we started versus where you are now. This is [X] months in. Imagine where we are at month [Y]."</div>
+          <p>Paired with real photos, that has held more clients for us than any discount or promotion.</p>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 8 Milestone</h4><p>Starting with your next consult, plant the maintenance seed. Say the day-one line before you present the plan. That one habit makes the end-of-plan conversation feel natural instead of new.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook8">
+        <div class="lesson-body">
+          <h3>Module 8 Workbook — Maintenance Plans</h3>
+
+          <div class="workbook-prompt"><label>1. Standard maintenance treatments and how often.</label><textarea rows="5" placeholder="Treatment — frequency&#10;Treatment — frequency"></textarea></div>
+
+          <div class="workbook-prompt"><label>2. Annual maintenance plan price.</label><input type="text" placeholder="$X,XXX per year"></div>
+
+          <div class="workbook-prompt"><label>3. Write the maintenance close in your own voice.</label><textarea rows="4"></textarea></div>
+
+          <div class="workbook-prompt"><label>4. When do you start planting the maintenance seed in first consults?</label><input type="text" placeholder="Date"></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy8">
+        <div class="lesson-body">
+          <h3>Case Study — Brenda's Maintenance Transition</h3>
+          <p style="font-style:italic;color:var(--stone);">Representative example — it illustrates the principle in this module.</p>
+
+          <p>Brenda finished her twelve-month plan from Module 3. Last appointment coming up.</p>
+
+          <p>We pulled up her month-one photos next to her current photos and walked her through every visible change — the jawline, the pigment, the texture.</p>
+
+          <p>Her maintenance plan was a lighter annual one: periodic collagen and neuromodulator treatments, regular hydration, an occasional biostimulator, continued home care.</p>
+
+          <p>Brenda's response: "Of course. I'm not undoing this work. When do we start?"</p>
+
+          <div class="case-study-quote">When the seed was planted on day one and the results are real, the maintenance conversation needs almost no convincing. The before-and-after photos do the work — which is exactly why the next module teaches you how to take them right.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 9 ═══ -->
+    <div class="content panel" id="panel-mod9" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">09</div>
+        <div class="module-header-text">
+          <div class="label">Module 9</div>
+          <h2>Keeping Clients On Plan</h2>
+          <div class="duration">⏱ ~12 min read + workbook</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson9')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook9')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy9')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson9">
+        <div class="lesson-body">
+          <h3>The Three-Touchpoint Retention System</h3>
+          <p>Selling the plan is half the job. Keeping a client engaged across six to twelve months takes a rhythm — three light touchpoints between every appointment.</p>
+
+          <h3>Touchpoint One — Within 48 Hours of Treatment</h3>
+          <p>A short, real post-care check-in.</p>
+          <div class="script-block"><span class="script-label">Post-treatment check-in</span>"Hi [Name], checking in on how your skin feels after [treatment]. A little redness or sensitivity right now is completely normal. Any questions, let me know. Looking forward to seeing you for [next treatment]."</div>
+
+          <h3>Touchpoint Two — Halfway Between Appointments</h3>
+          <p>A progress check-in. This is where most clinics go quiet. Don't.</p>
+          <div class="script-block"><span class="script-label">Mid-cycle progress check</span>"Hi [Name], we're about halfway to your next treatment and I wanted to check in. How's the home care routine feeling? Noticing any changes? Happy to adjust anything."</div>
+
+          <h3>Touchpoint Three — The Day Before the Next Appointment</h3>
+          <p>Confirmation plus context.</p>
+          <div class="script-block"><span class="script-label">Pre-appointment confirmation</span>"Hi [Name], looking forward to seeing you tomorrow. We're doing [treatment], a key step in the timeline we built. See you at [time]."</div>
+
+          <h3>How to Take Photos That Actually Prove the Result</h3>
+          <p>Your maintenance close and your retention conversations both run on before-and-after photos. So the photos have to be comparable. A photo shot in different light, at a different angle, on a different day is not proof — it's noise. Standardize it.</p>
+          <p><strong>Consent first.</strong> Get written photo consent at intake. Be clear about whether photos might ever be used beyond the client's own file. Never use a client's photo publicly without separate, specific permission.</p>
+          <p><strong>Same spot, same light.</strong> Pick one location with even, consistent light. Avoid direct window light — it shifts through the day. Use the same setup every time.</p>
+          <p><strong>Same framing.</strong> Same distance, same angle, same crop, every visit. Mark the floor for where the client stands if that helps.</p>
+          <p><strong>Same prep.</strong> Clean skin, no makeup, hair back the same way, neutral expression.</p>
+          <p><strong>Standard angles.</strong> Front, left 45, right 45, at a minimum. Same set every time.</p>
+          <p><strong>Label and store securely.</strong> Date every photo. Keep it in the client's file in a system that protects personal health information.</p>
+          <p>A one-page photo protocol posted at your photo station keeps the whole team consistent. Consistent photos are what make the results conversation impossible to argue with.</p>
+
+          <h3>The Pause Conversation</h3>
+          <p>Some clients will ask to pause. A pause request is rarely really about pausing — it's usually a specific concern, and often a solvable one. Get curious before you accommodate.</p>
+          <div class="script-block"><span class="script-label">When a client asks to pause</span>"Hi [Name], I heard you'd like to pause. Before we change anything, I wanted to talk for a minute. Life happens, I get it. Can I ask, what does a pause look like to you? And is it the money, the scheduling, or something about the plan itself?"</div>
+          <p>Often the real issue gets solved without breaking the plan — push appointments out, restructure the payments, talk through a doubt. Pausing usually breaks momentum, and a lot of paused plans never restart. So solve the real concern where you honestly can. If a client truly needs to stop, respect that.</p>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 9 Action Step</h4><p>Set up your touchpoint reminders this week — a spreadsheet or your booking software is fine. Then write your one-page photo protocol and post it at your photo station.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook9">
+        <div class="lesson-body">
+          <h3>Module 9 Workbook — Retention</h3>
+
+          <div class="workbook-prompt"><label>1. Touchpoint one — post-care check-in, in your voice.</label><textarea rows="3" placeholder="Message template..."></textarea></div>
+
+          <div class="workbook-prompt"><label>2. Touchpoint two — mid-cycle progress check-in.</label><textarea rows="3"></textarea></div>
+
+          <div class="workbook-prompt"><label>3. Touchpoint three — pre-appointment confirmation.</label><textarea rows="3"></textarea></div>
+
+          <div class="workbook-prompt"><label>4. Your photo protocol — location, lighting, angles, consent process.</label><textarea rows="4"></textarea></div>
+
+          <div class="workbook-prompt"><label>5. Your pause response.</label><textarea rows="4"></textarea></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy9">
+        <div class="lesson-body">
+          <h3>Case Study — The Pause Conversation</h3>
+          <p style="font-style:italic;color:var(--stone);">Representative example — it illustrates the principle in this module.</p>
+
+          <p>A client four months into a twelve-month plan told the front desk she needed to pause for "financial reasons."</p>
+
+          <p>The provider called her personally and got curious before accommodating — what does a pause look like, and is this about money, scheduling, or the plan itself?</p>
+
+          <p>The client opened up. An unexpected medical bill. She was overwhelmed, but she was genuinely happy with her results and felt bad about pausing.</p>
+
+          <p>The provider's answer: "Let's not pause. Pausing throws off the spacing and you lose momentum. Instead, I'll push your next two treatments out a few weeks each to give you breathing room, and we can adjust your payment schedule. Does that work?"</p>
+
+          <p>The client stayed on plan, finished it, and moved into maintenance.</p>
+
+          <div class="case-study-quote">A pause request is usually a specific concern wearing a general request. Get curious. Most are solvable without breaking the plan — and when one genuinely isn't, you respect it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 10 ═══ -->
+    <div class="content panel" id="panel-mod10" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">10</div>
+        <div class="module-header-text">
+          <div class="label">Module 10</div>
+          <h2>The Staff Incentive System</h2>
+          <div class="duration">⏱ ~15 min read + workbook</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this, 'lesson10')">Lesson</button>
+        <button class="tab" onclick="switchTab(this, 'workbook10')">Workbook</button>
+        <button class="tab" onclick="switchTab(this, 'casestudy10')">Case Study</button>
+      </div>
+
+      <div class="tab-panel active" id="lesson10">
+        <div class="lesson-body">
+          <h3>The Last Piece — Incentives That Direct Attention</h3>
+          <p>You can build the perfect framework, write the cleanest consult, design the best menu. It still won't take hold across a team unless your providers have a clear reason to use it.</p>
+          <p>Incentives don't manufacture effort. They direct attention. When the payoff for presenting plans well is clear and immediate for a provider, they learn the skill faster, because they have a concrete reason to practice it.</p>
+
+          <h3>A Tiered Bonus Structure</h3>
+          <p>This is the kind of structure we use. Set your real numbers to your own economics — the principle is what matters.</p>
+
+          <div class="callout">
+            <p><strong>Tier 1 plans</strong> — a modest per-plan bonus.</p>
+            <p><strong>Tier 2 plans</strong> — a bigger one.</p>
+            <p><strong>Tier 3 plans</strong> — a significantly bigger one.</p>
+          </div>
+
+          <p>Make the jumps between tiers big enough that a provider feels the difference between a Tier 1 and a Tier 3 plan. The goal is not bigger plans for their own sake. It's rewarding providers for confidently presenting the right-sized plan when the client's goals genuinely call for it.</p>
+
+          <h3>The Cross-Provider Bonus</h3>
+          <p>When a provider builds a plan that includes another provider's services, and that plan sells, give the originating provider a small extra bonus. That rewards thinking about the whole client journey instead of just their own lane.</p>
+
+          <h3>Why Bonuses Beat Commission Here</h3>
+          <p>Commission breeds competition between providers — hoarding, fewer referrals, the team system falling apart. Bonuses, paid no matter whose client it was, breed collaboration. The whole team works to build good plans together.</p>
+
+          <h3>Rolling It Out</h3>
+          <p><strong>Week one.</strong> Team meeting. Walk through the structure and the math. Show how a provider's income could change.</p>
+          <p><strong>Week two.</strong> Hand every provider the consult framework and the templates. Practice as a team.</p>
+          <p><strong>Week three.</strong> Soft launch. Providers use the system, bonuses not tracked yet.</p>
+          <p><strong>Week four on.</strong> Bonuses go live. The first payout creates momentum.</p>
+          <p>Track it with a simple spreadsheet. One row per plan — provider, plan amount, tier, bonus, cross-provider bonus, date paid. Pay monthly, not quarterly.</p>
+
+          <div class="milestone-check"><div class="mc-icon">✓</div><div><h4>Module 10 Milestone — Course Complete</h4><p>Build your bonus structure with the workbook and roll it out within 30 days. Then go back to Module 1 and run the whole system again — this time as implementation, not just learning. Welcome to the family.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="workbook10">
+        <div class="lesson-body">
+          <h3>Module 10 Workbook — Staff Incentives</h3>
+          <p>Set your real numbers to your own clinic's economics.</p>
+
+          <div class="workbook-prompt"><label>1. Tier 1 bonus.</label><input type="text" placeholder="$ per plan sold"></div>
+
+          <div class="workbook-prompt"><label>2. Tier 2 bonus.</label><input type="text" placeholder="$ per plan sold"></div>
+
+          <div class="workbook-prompt"><label>3. Tier 3 bonus.</label><input type="text" placeholder="$ per plan sold"></div>
+
+          <div class="workbook-prompt"><label>4. Cross-provider bonus.</label><input type="text" placeholder="$ per plan sold"></div>
+
+          <div class="workbook-prompt"><label>5. When do you announce the structure to your team?</label><input type="text" placeholder="Date"></div>
+
+          <button class="save-btn" onclick="saveWorkbook(this)">Save My Answers</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="casestudy10">
+        <div class="lesson-body">
+          <h3>Case Study — The Incentive That Built a Strong Provider</h3>
+          <p style="font-style:italic;color:var(--stone);">Representative example — it illustrates the principle in this module.</p>
+
+          <p>When we launched the incentive system, our newest aesthetician was about six months out of school. She was selling very few plans, with a low average ticket.</p>
+
+          <p>What changed was simple. The tiered structure made it concrete that her income could grow a lot as she got better at presenting plans.</p>
+
+          <p>Within about a year, her average ticket had climbed sharply, and she was one of the strongest providers in her department.</p>
+
+          <p>What changed wasn't her — it was her clarity. Before, "sell more plans" was abstract. After, every plan she presented had a specific, knowable payoff for her. That gave her a reason to build the skill.</p>
+
+          <div class="case-study-quote">Incentives direct attention. When the payoff for doing the work is clear, providers learn faster.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ DOWNLOADS ═══ -->
+    <div class="content panel" id="panel-downloads" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">↓</div>
+        <div class="module-header-text">
+          <div class="label">Resources</div>
+          <h2>Downloads &amp; Templates</h2>
+          <div class="duration">5 done-for-you files — ready to use this week</div>
+        </div>
+      </div>
+
+      <div class="lesson-body">
+        <p>Every template you need to start using The Skin Gym Method this week. Click any button below — your file downloads instantly to your device.</p>
+
+        <div style="background:rgba(184,147,90,0.08);border-left:3px solid var(--gold);padding:20px 24px;margin:24px 0;border-radius:0 6px 6px 0;">
+          <p style="font-weight:600;color:var(--charcoal);font-size:13px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">How to use the templates</p>
+          <p style="margin-bottom:8px;"><strong>Step 1.</strong> Click any download button below. PDF saves to your device automatically.</p>
+          <p style="margin-bottom:8px;"><strong>Step 2.</strong> Open the PDF on your phone, tablet, or computer — no special app needed.</p>
+          <p style="margin-bottom:8px;"><strong>Step 3.</strong> Print to fill in by hand, or fill in directly on your device.</p>
+          <p style="margin-bottom:0;"><strong>Step 4.</strong> Want the editable Word version? Email Adam and he'll send it to you.</p>
+        </div>
+
+        <div class="download-grid">
+          <a class="download-item" href="01_Skin_Plan_Client_Template.pdf" download>
+            <div class="download-icon">📄</div>
+            <div class="download-info">
+              <div class="download-title">Skin Plan Client Template</div>
+              <div class="download-desc">Fillable PDF for building personalized client plans</div>
+            </div>
+            <div class="download-arrow">↓</div>
+          </a>
+
+          <a class="download-item" href="02_Plan_Builder_Quick_Reference.pdf" download>
+            <div class="download-icon">📋</div>
+            <div class="download-info">
+              <div class="download-title">Plan Builder Quick Reference</div>
+              <div class="download-desc">1-page printable cheat sheet of the 5 categories + treatment options</div>
+            </div>
+            <div class="download-arrow">↓</div>
+          </a>
+
+          <a class="download-item" href="03_Consultation_Script.pdf" download>
+            <div class="download-icon">💬</div>
+            <div class="download-info">
+              <div class="download-title">Consultation Script (Printable)</div>
+              <div class="download-desc">The full script from Module 4 in a clean printable format</div>
+            </div>
+            <div class="download-arrow">↓</div>
+          </a>
+
+          <a class="download-item" href="04_Pricing_Worksheet.pdf" download>
+            <div class="download-icon">💰</div>
+            <div class="download-info">
+              <div class="download-title">Pricing Worksheet</div>
+              <div class="download-desc">Build your three pricing tiers with this calculator-style worksheet</div>
+            </div>
+            <div class="download-arrow">↓</div>
+          </a>
+
+          <a class="download-item" href="05_Staff_Bonus_Tracker.pdf" download>
+            <div class="download-icon">📊</div>
+            <div class="download-info">
+              <div class="download-title">Staff Bonus Tracker</div>
+              <div class="download-desc">Spreadsheet template for tracking the tiered bonus system from Module 10</div>
+            </div>
+            <div class="download-arrow">↓</div>
+          </a>
+        </div>
+
+        <div class="callout" style="margin-top:32px;">
+          <p><strong>Files won't download?</strong> Make sure your browser allows downloads from this site. If you're still having trouble, contact Adam at <a href="mailto:adam@glowaestheticclinicND.com" style="color:var(--gold);">adam@glowaestheticclinicND.com</a> and he'll send them to you directly within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ COMMUNITY ═══ -->
+    <div class="content panel" id="panel-community" style="display:none;">
+      <div class="module-header">
+        <div class="module-num-large">◯</div>
+        <div class="module-header-text">
+          <div class="label">Resources</div>
+          <h2>Community</h2>
+          <div class="duration">Connect with other medspa owners using this method</div>
+        </div>
+      </div>
+
+      <div class="lesson-body">
+        <h3>You're Not in This Alone</h3>
+        <p>The private member community is where Skin Gym Method students share wins, ask questions, hold each other accountable, and grow together. Post your first plan sale. Ask how others handled a specific objection. See what's working for clinics in other markets.</p>
+        <p>This is also where we share updates, new content, and bonus training as the method evolves. If you completed your enrollment, you've been invited via email.</p>
+
+        <div class="callout">
+          <p><strong>Joining the community:</strong></p>
+          <p>Check your enrollment email for the private Facebook group invite link. If you can't find it, contact us and we'll resend it.</p>
+        </div>
+
+        <h3>What to Post First</h3>
+        <p>Introduce yourself. Tell us where your clinic is, how long you've been in business, and what you hope to accomplish with this method. The community is most valuable when everyone shows up authentically.</p>
+
+        <h3>Ground Rules</h3>
+        <p>Keep it positive. Keep it confidential. Share wins and losses both — the losses teach more than the wins. No outside promotion. No spam. Be the kind of member you'd want others to be.</p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+const modules = ['welcome','mod1','mod2','mod3','mod4','mod5','mod6','mod7','mod8','mod9','mod10','downloads','community'];
+const labels = {
+  'welcome':'Welcome',
+  'mod1':'Module 1','mod2':'Module 2','mod3':'Module 3','mod4':'Module 4','mod5':'Module 5',
+  'mod6':'Module 6','mod7':'Module 7','mod8':'Module 8','mod9':'Module 9','mod10':'Module 10',
+  'downloads':'Downloads &amp; Templates','community':'Community'
+};
+
+function showModule(modId) {
+  // Hide all panels
+  document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+  // Show the selected one
+  const target = document.getElementById('panel-' + modId);
+  if (target) target.style.display = 'block';
+
+  // Update nav
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  // Find the matching nav item by onclick
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + modId + "'")) {
+      n.classList.add('active');
+    }
+  });
+
+  // Update breadcrumb
+  const bc = document.getElementById('breadcrumb-current');
+  if (bc) bc.innerHTML = labels[modId] || modId;
+
+  // Reset to first tab on the module
+  const firstTab = target ? target.querySelector('.tab') : null;
+  const firstPanel = target ? target.querySelector('.tab-panel') : null;
+  if (firstTab && firstPanel) {
+    target.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    target.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    firstTab.classList.add('active');
+    firstPanel.classList.add('active');
+  }
+
+  // Scroll to top
+  window.scrollTo({top: 0, behavior: 'smooth'});
+
+  // Close mobile sidebar
+  closeSidebar();
+}
+
+function switchTab(el, panelId) {
+  const parent = el.closest('.panel') || document;
+  parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  const panel = document.getElementById(panelId);
+  if (panel) panel.classList.add('active');
+}
+
+function saveWorkbook(btn) {
+  btn.textContent = 'Saved ✓';
+  btn.style.background = 'var(--green)';
+  btn.style.color = 'white';
+  setTimeout(() => {
+    btn.textContent = 'Save My Answers';
+    btn.style.background = '';
+    btn.style.color = '';
+  }, 2000);
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('active');
+}
+
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('active');
+}
+</script>
+
+<!-- ═══ PASSWORD GATE LOGIC ═══ -->
+<script>
+(function() {
+  var PASS = 'SGM1';
+  var AUTH_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+  // Clear any old localStorage auth from previous versions
+  try { localStorage.removeItem('sgm_auth'); } catch(e) {}
+
+  function unlock() {
+    var gate = document.getElementById('pw-gate');
+    if (gate) gate.style.display = 'none';
+  }
+
+  function checkPW() {
+    var input = document.getElementById('pw-input');
+    var error = document.getElementById('pw-error');
+    if (!input) return;
+    var val = input.value.trim().toUpperCase();
+    if (val === PASS) {
+      try {
+        var authData = {
+          token: PASS,
+          expires: Date.now() + AUTH_DURATION_MS
+        };
+        sessionStorage.setItem('sgm_auth', JSON.stringify(authData));
+      } catch(e) {}
+      unlock();
+    } else {
+      if (error) error.textContent = 'Incorrect password. Check your enrollment email.';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  // Check existing auth — only within current browser session AND not expired
+  try {
+    var stored = sessionStorage.getItem('sgm_auth');
+    if (stored) {
+      var authData = JSON.parse(stored);
+      if (authData.token === PASS && authData.expires > Date.now()) {
+        unlock();
+      } else {
+        // Expired or invalid — remove it
+        sessionStorage.removeItem('sgm_auth');
+      }
+    }
+  } catch(e) {
+    try { sessionStorage.removeItem('sgm_auth'); } catch(e2) {}
+  }
+
+  // Wire up after DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('pw-btn');
+    var input = document.getElementById('pw-input');
+    if (btn) btn.addEventListener('click', checkPW);
+    if (input) input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPW();
+    });
+    if (input) setTimeout(function(){ input.focus(); }, 100);
+  });
+
+  window.checkPW = checkPW;
+})();
+</script>
+
+</body>
+</html>
